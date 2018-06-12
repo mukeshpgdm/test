@@ -1,0 +1,36 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+  <models/>
+  <components>
+    <navigation uniqueid="sk-2pt3Ft-91">
+      <navigationitems>
+        <navigationitem label="New Navigation Item" uniqueid="sk-2pt3Ft-90">
+          <actions>
+            <action type="redirect" window="self"/>
+          </actions>
+        </navigationitem>
+      </navigationitems>
+    </navigation>
+    <grid uniqueid="sk-2pt4pH-98">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1">
+          <components/>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+    </grid>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="newSnippet" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+    </javascript>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

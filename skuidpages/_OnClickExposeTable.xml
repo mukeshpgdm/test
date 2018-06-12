@@ -1,0 +1,285 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false" theme="Modern">
+  <models>
+    <model id="Accounts" limit="10" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Account">
+      <fields>
+        <field id="Id"/>
+        <field id="Name"/>
+        <field id="Phone"/>
+        <field id="Type"/>
+        <field id="Site"/>
+        <field id="Rating"/>
+        <field id="AnnualRevenue"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+    <model id="Opportunities" limit="20" query="false" createrowifnonefound="false" datasource="salesforce" type="" sobject="Opportunity">
+      <fields>
+        <field id="AccountId"/>
+        <field id="Account.Name"/>
+        <field id="CloseDate"/>
+        <field id="Name"/>
+        <field id="StageName"/>
+        <field id="Type"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" value="" field="AccountId" fieldtargetobjects="Account" operator="=" mergefield="Id" novaluebehavior="deactivate" state="filterableoff" inactive="true" name="AccountId" enclosevalueinquotes="true"/>
+        <condition type="fieldvalue" field="ForecastCategoryName" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__ForecastCategoryName" state="filterableoff" value=""/>
+        <condition type="fieldvalue" field="CloseDate" operator="gte" inactive="true" enclosevalueinquotes="false" name="__autofilter__start__CloseDate" state="filterableoff" value=""/>
+        <condition type="fieldvalue" field="CloseDate" operator="lte" inactive="true" enclosevalueinquotes="false" name="__autofilter__end__CloseDate" state="filterableoff" value=""/>
+        <condition type="fieldvalue" field="Type" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Type" state="filterableoff" value=""/>
+      </conditions>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <grid uniqueid="sk-1BHKHH-156" columngutter="10px">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1" verticalalign="top" cssclass="panel">
+          <components>
+            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="Accounts" buttonposition="" mode="read" allowcolumnreordering="false" responsive="true" uniqueid="tableAccount" instantfilters="false" emptysearchbehavior="query" allowscrollbars="true" tablescrollheight="200px" floatheader="true" cssclass="actionOnRowTable">
+              <fields>
+                <field id="Name" hideable="true" uniqueid="fi-1BHRqH-183" valuehalign="" type="" maxdisplaycharacters="10" showlengthcounter="false"/>
+                <field id="Id" hideable="true" uniqueid="fi-1BHRqH-184"/>
+                <field id="Rating" hideable="true" uniqueid="fi-1F2FMs-146"/>
+                <field id="Site" hideable="true" uniqueid="fi-1F2FMt-147"/>
+              </fields>
+              <rowactions>
+                <action type="multi" label="Run multiple actions" icon="ssss">
+                  <actions>
+                    <action type="blockUI" message="Fetching..."/>
+                    <action type="setCondition" model="Opportunities" condition="AccountId" value="{{Id}}"/>
+                    <action type="requeryModels" behavior="standard">
+                      <models>
+                        <model>Opportunities</model>
+                      </models>
+                    </action>
+                    <action type="unblockUI"/>
+                  </actions>
+                  <renderconditions logictype="and"/>
+                </action>
+              </rowactions>
+              <massactions usefirstitemasdefault="true">
+                <action type="multi" label="Run multiple actions" icon="sk-icon-magic"/>
+              </massactions>
+              <views>
+                <view type="standard"/>
+              </views>
+              <searchfields/>
+              <renderconditions logictype="and"/>
+              <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+            </skootable>
+            <basicfieldeditor showheader="true" showsavecancel="true" showerrorsinline="true" model="Accounts" buttonposition="" uniqueid="sk-1Fa-7N-963" mode="read">
+              <columns>
+                <column width="100%">
+                  <sections>
+                    <section title="Section A" collapsible="no">
+                      <fields>
+                        <field uniqueid="sk-1Fb4Bc-983" id="Id"/>
+                        <field uniqueid="sk-1Fb4Bd-984" id="Name"/>
+                        <field uniqueid="sk-1Fb4Bd-985" id="Phone"/>
+                        <field uniqueid="sk-1Fb4Bd-986" id="Rating"/>
+                        <field uniqueid="sk-1Fb4Be-987" id="Site"/>
+                        <field uniqueid="sk-1Fb4Be-988" id="Type"/>
+                        <field uniqueid="sk-1Fb4Be-989" id="AnnualRevenue"/>
+                      </fields>
+                    </section>
+                  </sections>
+                </column>
+              </columns>
+            </basicfieldeditor>
+            <basicfieldeditor showheader="true" showsavecancel="true" showerrorsinline="true" model="Accounts" buttonposition="" uniqueid="sk-1FbDBR-1001" mode="read">
+              <columns>
+                <column width="100%">
+                  <sections>
+                    <section title="Section A" collapsible="no">
+                      <fields>
+                        <field uniqueid="sk-1FbIKQ-1027" id="Id"/>
+                        <field uniqueid="sk-1FbIKQ-1028" id="Name"/>
+                        <field uniqueid="sk-1FbIKQ-1029" id="Phone"/>
+                        <field uniqueid="sk-1FbIKR-1030" id="Rating"/>
+                        <field uniqueid="sk-1FbIKR-1031" id="Site"/>
+                        <field uniqueid="sk-1FbIKR-1032" id="Type"/>
+                        <field uniqueid="sk-1FbIKR-1033" id="AnnualRevenue"/>
+                      </fields>
+                    </section>
+                  </sections>
+                </column>
+              </columns>
+            </basicfieldeditor>
+          </components>
+        </division>
+        <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1" cssclass="panel">
+          <components>
+            <filterset model="Opportunities" searchmethod="server" searchbox="true" uniqueid="sk-1F5st9-133" emptysearchbehavior="query">
+              <filters>
+                <filter type="select" filteroffoptionlabel="" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="no" conditionfield="ForecastCategoryName"/>
+                <filter type="daterange" filteroffoptionlabel="New Filter" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="no" conditionfield="CloseDate" label="Close Date"/>
+                <filter type="select" filteroffoptionlabel="" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="no" conditionfield="Type"/>
+              </filters>
+              <searchfields/>
+              <renderconditions logictype="and"/>
+            </filterset>
+            <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="false" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="Opportunities" buttonposition="" mode="read" allowcolumnreordering="false" responsive="true" uniqueid="sk-1BHTMH-194" instantfilters="false" emptysearchbehavior="query">
+              <fields>
+                <field id="Name" hideable="true" uniqueid="fi-1BHurm-256" valuehalign="" type="" columnwidth="120px"/>
+                <field id="CloseDate" hideable="true" uniqueid="fi-1BHurm-257" valuehalign="" type="" columnwidth="120px"/>
+                <field id="Type" hideable="true" uniqueid="fi-1FFJq3-518" valuehalign="" type="" columnwidth="140px"/>
+              </fields>
+              <rowactions/>
+              <massactions usefirstitemasdefault="true"/>
+              <views>
+                <view type="standard"/>
+              </views>
+              <searchfields/>
+              <renderconditions logictype="and"/>
+            </skootable>
+          </components>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+    </grid>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="staticresource" name="nicescroll" cachelocation="false" url="" namespace="TEFirst" content_type="application/javascript">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+      <jsitem location="inline" name="newInlineJS" cachelocation="false" url="">(function(skuid) {
+    var $ = skuid.$;
+
+    $('html').niceScroll({
+        autohidemode: false,
+        zindex: 999,
+        cursorcolor: "#01A982",
+        background: "#cccccc"
+    }).resize();
+
+
+
+    $(document.body).one('pageload', function() {
+        $('html').bind('mouseover', function() {
+            $("html").niceScroll({
+                cursorcolor: "#01A982",
+                background: "#cccccc",
+                autohidemode: false,
+                zindex: 999
+            }).resize();
+            //$("body").niceScroll({ autohidemode: false, zindex: 999 }).resize();
+        });
+
+        var s = $('.nx-editor-contents').niceScroll({
+            cursorcolor: "#01A982",
+            background: "#cccccc"
+        });
+        var model = skuid.$M('Accounts');
+        $('.nx-editor-contents').bind('scroll', function() {
+            skuid.$C("tableAccount").element.list.currentPageSize = 20
+            // model.load();
+            console.log($(this).scrollTop());
+            console.log($(this).height());
+            if ($(this).scrollTop() &gt;= $(this).height()) {
+                $.blockUI({
+                    message: 'Doing something crazy asynchronous...'
+                });
+                model.loadNextOffsetPage();
+                $.unblockUI();
+            }
+        });
+
+        
+        
+        // $('tr').each(function(){
+        //     $('td:first',this).remove().insertAfter($('td:last',this)); 
+        // });
+        
+        // $('tr').each(function(){
+        //     $('th:first',this).remove().insertAfter($('th:last',this)); 
+        // });
+        
+
+        $('.actionOnRowTable tr').on('click', 'td', function(event) {
+           // alert('ddd')'
+           $('.actionOnRowTable tr').not(this).removeClass( 'highlighted-row' );
+        //   if($(event.currentTarget.parentElement).hasClass( "highlighted-row" )){
+        //       $(event.currentTarget.parentElement).removeClass( 'highlighted-row' );
+        //   }else{
+               $(event.currentTarget.parentElement).addClass( 'highlighted-row' );
+           //}
+           
+           console.log($(event.currentTarget.parentElement))
+            if ($(event.currentTarget).find('.ssss').length &lt;= 0) {
+                $(event.currentTarget.parentElement).find('.ssss').click();
+            }
+          
+            });
+
+        console.log(s);
+
+    });
+})(skuid);</jsitem>
+    </javascript>
+    <css>
+      <cssitem location="inline" name="newcss" cachelocation="false">.panel{
+    border: 1px solid blue;
+}
+.queue-nx-list{
+    display:none;
+}
+div.nx-actionselect.nx-conditiontoken:first-child {
+    top: 92px;
+    z-index: 99999;
+    margin-left: 100px;
+    
+}
+div.nx-actionselect.nx-conditiontoken:nth-child(2){
+    top:92px;
+    z-index: 99999;
+    margin-left: 200px;
+}
+
+div.nx-actionselect.nx-conditiontoken:nth-child(3){
+    top:92px;
+    z-index: 99999;
+    margin-left: 200px;
+}
+
+.nx-actionselect-text{
+    padding-left:100px;
+    display:none;
+}
+
+.sk-icon-magic2{
+    background-image: url(/resource/1509077406000/TEFirst__sun) !important; 
+width:75px; 
+height:75px; 
+background-position: center; 
+padding-top:25px;
+}
+
+table.nx-skootable-data tbody tr.highlighted-row td {    
+  
+   border-right:1px solid red;
+}
+table.nx-skootable-data tbody tr.highlighted-row td:last-child:after {    
+  content: "";
+    position: absolute;
+    
+    right: 0;
+    width: 0; 
+    height: 0; 
+    display: block;
+    border-left: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+
+    border-top: 20px solid #f00;
+}</cssitem>
+    </css>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

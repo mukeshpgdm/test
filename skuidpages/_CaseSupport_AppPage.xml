@@ -1,0 +1,387 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true" theme="Lightning Design">
+  <models>
+    <model id="CaseList" limit="50" query="true" createrowifnonefound="false" datasource="salesforce" type="" orderby="CaseNumber ASC" sobject="Case">
+      <fields>
+        <field id="AccountId"/>
+        <field id="Account.Name"/>
+        <field id="Id"/>
+        <field id="CaseNumber"/>
+        <field id="ContactId"/>
+        <field id="Contact.Name"/>
+        <field id="CreatedDate"/>
+        <field id="OwnerId"/>
+        <field id="Owner.Name"/>
+        <field id="Priority"/>
+        <field id="Status"/>
+        <field id="Subject"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" field="Status" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Status" state="filterableoff" value=""/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="CaseDetail" limit="" query="false" createrowifnonefound="false" datasource="salesforce" type="" orderby="CaseNumber ASC" sobject="Case">
+      <fields>
+        <field id="AccountId"/>
+        <field id="Account.Name"/>
+        <field id="Id"/>
+        <field id="CaseNumber"/>
+        <field id="ContactId"/>
+        <field id="Contact.Name"/>
+        <field id="CreatedDate"/>
+        <field id="OwnerId"/>
+        <field id="Owner.Name"/>
+        <field id="Priority"/>
+        <field id="Status"/>
+        <field id="Subject"/>
+        <field id="Origin"/>
+        <field id="Reason"/>
+        <field id="Type"/>
+        <field id="IsClosed"/>
+        <field id="ClosedDate"/>
+        <field id="IsEscalated"/>
+        <field id="TEFirst__Product__c"/>
+        <field id="TEFirst__SLAViolation__c"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Id" state="filterableoff" inactive="true" name="CaseDetailId"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="LookupContact" limit="1" query="false" createrowifnonefound="false" datasource="salesforce" type="" sobject="Contact">
+      <fields>
+        <field id="Phone"/>
+        <field id="Id"/>
+        <field id="Email"/>
+        <field id="Title"/>
+      </fields>
+      <conditions>
+        <condition type="modelmerge" value="" field="Id" state="" operator="=" model="CaseDetail" enclosevalueinquotes="true" mergefield="ContactId" novaluebehavior="deactivate" fieldtargetobjects="Contact"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="LookupAccount" limit="1" query="false" createrowifnonefound="false" datasource="salesforce" type="" sobject="Account">
+      <fields>
+        <field id="Description"/>
+        <field id="Id"/>
+        <field id="Phone"/>
+        <field id="Type"/>
+        <field id="TEFirst__CustomerPriority__c"/>
+        <field id="Industry"/>
+        <field id="OwnerId"/>
+        <field id="Owner.Name"/>
+      </fields>
+      <conditions>
+        <condition type="modelmerge" value="" field="Id" operator="=" model="CaseDetail" enclosevalueinquotes="true" mergefield="AccountId" novaluebehavior="deactivate" fieldtargetobjects="Account" state=""/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="UIModel" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+      <fields>
+        <field id="DisplayContactAccountDetais" displaytype="BOOLEAN" label="Display Contact/Account Details?" ogdisplaytype="TEXT" required="true"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <grid uniqueid="sk-7Gur4-147">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+          <components>
+            <pagetitle model="CaseList" uniqueid="sk-7GxDY-154">
+              <maintitle>My Cases</maintitle>
+              <actions/>
+            </pagetitle>
+            <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="CaseList" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-7H49U-162" allowscrollbars="true" floatheader="true">
+              <fields>
+                <field id="CaseNumber" hideable="true" uniqueid="fi-7HTht-188" valuehalign="" type="" allowordering="true"/>
+                <field id="Subject" hideable="true" uniqueid="fi-7HThu-189" valuehalign="" type="" allowordering="true"/>
+                <field id="Status" hideable="true" uniqueid="fi-7HThu-190" valuehalign="" type="" allowordering="true"/>
+                <field id="Priority" hideable="true" uniqueid="fi-7HThu-191" valuehalign="" type="" allowordering="true"/>
+                <field id="CreatedDate" hideable="true" uniqueid="fi-7HThu-192"/>
+                <field id="OwnerId" hideable="true" uniqueid="fi-7HThu-193" valuehalign="" type="" allowordering="true"/>
+                <field id="ContactId" hideable="true" uniqueid="fi-7HThv-194" valuehalign="" type="" allowordering="true"/>
+                <field id="AccountId" hideable="true" uniqueid="fi-7HThv-195" valuehalign="" type="" allowordering="true"/>
+              </fields>
+              <rowactions>
+                <action type="edit"/>
+                <action type="delete"/>
+                <action type="multi" label="View Case Details" icon="sk-icon-go-to-full-detail-page">
+                  <actions>
+                    <action type="blockUI" message="Loading Data"/>
+                    <action type="setCondition" model="CaseDetail" condition="CaseDetailId" value="{{Id}}"/>
+                    <action type="requeryModels" model="CaseList" behavior="standard">
+                      <models>
+                        <model>CaseDetail</model>
+                        <model>LookupContact</model>
+                        <model>LookupAccount</model>
+                      </models>
+                    </action>
+                    <action type="unblockUI"/>
+                  </actions>
+                </action>
+              </rowactions>
+              <massactions usefirstitemasdefault="true">
+                <action type="massupdate"/>
+                <action type="massdelete"/>
+              </massactions>
+              <views>
+                <view type="standard"/>
+              </views>
+              <filters>
+                <filter type="select" filteroffoptionlabel="All Statuses" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Status"/>
+              </filters>
+            </skootable>
+          </components>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+      <renderconditions logictype="and">
+        <rendercondition fieldmodel="CaseDetail" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasNoRows"/>
+      </renderconditions>
+    </grid>
+    <grid uniqueid="sk-7JC2q-415">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1">
+          <components>
+            <wrapper uniqueid="sk-7JEfW-421">
+              <components>
+                <pagetitle model="CaseDetail" uniqueid="sk-7JUx5-444">
+                  <maintitle>{{CaseNumber}}:{{Subject}}</maintitle>
+                  <subtitle>
+                    <template>{{Model.label}}</template>
+                  </subtitle>
+                  <actions/>
+                </pagetitle>
+                <buttonset model="CaseDetail" uniqueid="sk-7UK6h-968">
+                  <buttons>
+                    <button type="save" label="Save" uniqueid="sk-7UQW--976" window="self" rollbackonanyerror="true">
+                      <renderconditions logictype="and">
+                        <rendercondition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="CaseDetail" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+                      </renderconditions>
+                      <enableconditions/>
+                    </button>
+                    <button type="multi" label="Cancel" uniqueid="sk-7Ue6a-1004" icon="sk-icon-close">
+                      <actions>
+                        <action type="cancel">
+                          <models>
+                            <model>CaseDetail</model>
+                          </models>
+                        </action>
+                        <action type="requeryModels" behavior="standard">
+                          <models>
+                            <model>CaseList</model>
+                          </models>
+                        </action>
+                      </actions>
+                      <renderconditions logictype="and">
+                        <rendercondition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="CaseDetail" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="="/>
+                      </renderconditions>
+                      <enableconditions/>
+                    </button>
+                    <button type="multi" label="Back to Case List" uniqueid="sk-7VDWh-1051" icon="sk-icon-menu">
+                      <actions>
+                        <action type="emptyModelData">
+                          <models>
+                            <model>CaseDetail</model>
+                            <model>LookupContact</model>
+                            <model>LookupAccount</model>
+                          </models>
+                        </action>
+                        <action type="requeryModels" behavior="standard">
+                          <models>
+                            <model>CaseList</model>
+                            <model>UIModel</model>
+                          </models>
+                        </action>
+                        <action type="createRow" model="UIModel" appendorprepend="prepend" defaultmodefornewitems="edit" affectedrows="all"/>
+                      </actions>
+                      <renderconditions logictype="and"/>
+                      <enableconditions logictype="and">
+                        <condition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="CaseDetail" sourcetype="modelproperty" sourceproperty="hasChanged" value="true" operator="!="/>
+                      </enableconditions>
+                    </button>
+                  </buttons>
+                </buttonset>
+                <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="CaseDetail" buttonposition="" uniqueid="sk-7Jq3o-461" mode="read">
+                  <columns>
+                    <column width="50%">
+                      <sections>
+                        <section title="Case Details" collapsible="no">
+                          <fields>
+                            <field uniqueid="sk-7Jzod-476" id="CaseNumber"/>
+                            <field uniqueid="sk-7Jzoe-477" id="Subject"/>
+                            <field uniqueid="sk-7Jzoe-478" id="TEFirst__Product__c"/>
+                            <field uniqueid="sk-7Jzoe-479" id="OwnerId"/>
+                          </fields>
+                        </section>
+                        <section title="" collapsible="no">
+                          <fields>
+                            <field uniqueid="sk-7L2IF-494" id="AccountId"/>
+                            <field uniqueid="sk-7L2IF-495" id="ContactId"/>
+                          </fields>
+                        </section>
+                        <section title="Closed Information" collapsible="no">
+                          <fields>
+                            <field uniqueid="sk-7LTFT-519" id="IsClosed"/>
+                            <field uniqueid="sk-7LTFU-520" id="ClosedDate"/>
+                          </fields>
+                        </section>
+                      </sections>
+                    </column>
+                    <column width="50%">
+                      <sections>
+                        <section title="" collapsible="no">
+                          <fields>
+                            <field uniqueid="sk-7LeLl-526" id="Status"/>
+                            <field uniqueid="sk-7LeLm-527" id="Priority"/>
+                            <field uniqueid="sk-7LeLm-528" id="CreatedDate"/>
+                          </fields>
+                        </section>
+                        <section title="" collapsible="no">
+                          <fields>
+                            <field uniqueid="sk-7LoDz-540" id="Type"/>
+                            <field uniqueid="sk-7LoD_-541" id="Reason"/>
+                            <field uniqueid="sk-7LoD_-542" id="Origin"/>
+                          </fields>
+                        </section>
+                        <section title="" collapsible="no">
+                          <fields>
+                            <field uniqueid="sk-7M1uo-556" id="IsEscalated"/>
+                            <field uniqueid="sk-7M1uo-557" id="TEFirst__SLAViolation__c"/>
+                          </fields>
+                        </section>
+                      </sections>
+                    </column>
+                  </columns>
+                </basicfieldeditor>
+              </components>
+              <styles>
+                <styleitem type="background" bgtype="none"/>
+                <styleitem type="border" borders="all" padding="all">
+                  <styles>
+                    <styleitem property="border" value="1% solid transparent"/>
+                    <styleitem property="padding" value="1%"/>
+                    <styleitem property="box-sizing" value="border-box"/>
+                  </styles>
+                </styleitem>
+                <styleitem type="size"/>
+              </styles>
+            </wrapper>
+            <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="UIModel" buttonposition="" uniqueid="sk-7a1IJ-1173" mode="edit">
+              <columns>
+                <column width="100%">
+                  <sections>
+                    <section title="Section A" collapsible="no" showheader="false">
+                      <fields>
+                        <field uniqueid="sk-7b1It-1194" id="DisplayContactAccountDetais"/>
+                      </fields>
+                    </section>
+                  </sections>
+                </column>
+              </columns>
+            </basicfieldeditor>
+            <wrapper uniqueid="sk-7Oi2K-744">
+              <components>
+                <buttonset model="LookupContact" uniqueid="sk-7SKfP-896">
+                  <buttons>
+                    <button type="save" label="Save" uniqueid="sk-7SOod-900" window="self" rollbackonanyerror="true">
+                      <models>
+                        <model>LookupAccount</model>
+                      </models>
+                      <hotkeys/>
+                      <renderconditions logictype="and"/>
+                      <enableconditions/>
+                    </button>
+                    <button type="cancel" label="Cancel" uniqueid="sk-7Sb1E-907" window="self">
+                      <models>
+                        <model>LookupAccount</model>
+                      </models>
+                    </button>
+                  </buttons>
+                  <renderconditions logictype="or">
+                    <rendercondition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="LookupContact" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+                    <rendercondition type="fieldvalue" enclosevalueinquotes="false" fieldmodel="LookupAccount" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasChanged" value="true" operator="="/>
+                  </renderconditions>
+                </buttonset>
+                <grid uniqueid="sk-7OmQ2-761" columngutter="5px">
+                  <divisions>
+                    <division behavior="flex" minwidth="100px" ratio="1">
+                      <components>
+                        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="LookupContact" buttonposition="" uniqueid="sk-7Oofg-766" mode="read">
+                          <columns>
+                            <column width="100%">
+                              <sections>
+                                <section title="Contact Details" collapsible="no">
+                                  <fields>
+                                    <field uniqueid="sk-7PwpD-797" id="Phone"/>
+                                    <field uniqueid="sk-7PwpD-798" id="Email"/>
+                                    <field uniqueid="sk-7PwpD-799" id="Title"/>
+                                  </fields>
+                                </section>
+                              </sections>
+                            </column>
+                          </columns>
+                        </basicfieldeditor>
+                      </components>
+                    </division>
+                    <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+                      <components>
+                        <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="LookupAccount" buttonposition="" uniqueid="sk-7QHbq-810" mode="read">
+                          <columns>
+                            <column width="100%">
+                              <sections>
+                                <section title="Account Details" collapsible="no">
+                                  <fields>
+                                    <field uniqueid="sk-7QTpB-831" id="Type"/>
+                                    <field uniqueid="sk-7QTpB-832" id="TEFirst__CustomerPriority__c"/>
+                                    <field uniqueid="sk-7QTpB-833" id="Phone"/>
+                                    <field uniqueid="sk-7QTpB-834" id="Industry"/>
+                                    <field uniqueid="sk-7QTpC-835" id="OwnerId"/>
+                                    <field uniqueid="sk-7QTpC-836" id="Description"/>
+                                  </fields>
+                                </section>
+                              </sections>
+                            </column>
+                          </columns>
+                        </basicfieldeditor>
+                      </components>
+                    </division>
+                  </divisions>
+                  <styles>
+                    <styleitem type="background" bgtype="none"/>
+                  </styles>
+                </grid>
+              </components>
+              <styles>
+                <styleitem type="background"/>
+                <styleitem type="border"/>
+                <styleitem type="size"/>
+              </styles>
+              <renderconditions logictype="and">
+                <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="UIModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="DisplayContactAccountDetais" value="true"/>
+              </renderconditions>
+            </wrapper>
+          </components>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+      <renderconditions logictype="and">
+        <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="CaseDetail" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+      </renderconditions>
+    </grid>
+  </components>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

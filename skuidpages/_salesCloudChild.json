@@ -1,0 +1,10 @@
+{
+   "uniqueId": "_salesCloudChild",
+   "type": "Desktop",
+   "name": "salesCloudChild",
+   "module": null,
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": "_SalesCloud_MH",
+   "isMasterPage": false,
+   "composerSettings": null
+}

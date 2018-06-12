@@ -1,0 +1,39 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false">
+  <models>
+    <model id="UserDetail" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="User">
+      <fields>
+        <field id="IsActive"/>
+        <field id="Username"/>
+      </fields>
+      <conditions>
+        <condition type="userinfo" value="" field="Id" operator="=" enclosevalueinquotes="true" userinfotype="userid"/>
+      </conditions>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <basicfieldeditor showheader="true" showsavecancel="true" showerrorsinline="true" model="UserDetail" buttonposition="" uniqueid="sk-1u-EoF-127" mode="read">
+      <columns>
+        <column width="100%">
+          <sections>
+            <section title="Section A" collapsible="no">
+              <fields>
+                <field uniqueid="sk-1u-HkX-141" id="IsActive"/>
+                <field uniqueid="sk-1u-HkY-142" id="Username"/>
+              </fields>
+            </section>
+          </sections>
+        </column>
+      </columns>
+    </basicfieldeditor>
+    <includepanel type="skuid" uniqueid="sk-1v0FZ1-251" pagename="chatbotfinal" module=""/>
+  </components>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

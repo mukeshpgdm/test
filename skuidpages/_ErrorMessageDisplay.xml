@@ -1,0 +1,60 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+  <models>
+    <model id="Account" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Account" doclone="">
+      <fields>
+        <field id="Id"/>
+        <field id="Name"/>
+        <field id="AccountNumber"/>
+        <field id="Phone"/>
+        <field id="Industry"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <basicfieldeditor showheader="true" showsavecancel="true" showerrorsinline="false" model="Account" buttonposition="" uniqueid="sk-hBDK_-117" mode="edit" layout="" showerroronhover="false">
+      <columns layoutmode="fixed">
+        <column width="100%">
+          <sections>
+            <section title="Section A" collapsible="no">
+              <fields>
+                <field uniqueid="sk-hBGRp-129" id="Id" valuehalign="" type=""/>
+                <field uniqueid="sk-hBGRt-130" id="Name" valuehalign="" type=""/>
+                <field uniqueid="sk-hBGRt-131" id="Phone"/>
+                <field uniqueid="sk-hBGRt-132" id="AccountNumber"/>
+                <field uniqueid="sk-hBGRt-133" id="Industry" showhelp="true" valuehalign="" type=""/>
+              </fields>
+            </section>
+          </sections>
+        </column>
+      </columns>
+    </basicfieldeditor>
+    <queue tagrendertype="template" searchbox="true" tokenizesearch="true" showsearchbydefault="true" uniqueid="sk-mqlxs-116" model="Account">
+      <rendertemplate>{{Name}}</rendertemplate>
+      <interactions>
+        <interaction type="tap">
+          <action type="drawer" querystring="id={{Id}}">
+            <drawer title="Drawer Area" width="90%" closehandle="true">
+              <components>
+                <richtext multiple="false" uniqueid="sk-mrTHF-156">
+                  <contents>&lt;p&gt;this drawer&lt;/p&gt;
+</contents>
+                </richtext>
+              </components>
+            </drawer>
+          </action>
+        </interaction>
+      </interactions>
+      <searchfields/>
+    </queue>
+  </components>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

@@ -1,0 +1,79 @@
+<skuidpage unsavedchangeswarning="yes">
+  <models>
+    <model id="oppty" limit="20" query="false" createrowifnonefound="false" datasource="salesforce" type="" sobject="Opportunity">
+      <fields>
+        <field id="AccountId"/>
+        <field id="Account.Name"/>
+        <field id="Amount"/>
+        <field id="TEFirst__Approval_Status__c"/>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="save"/>
+            <action type="blockUI" message="dfgv"/>
+            <action type="createRow" model="oppty" appendorprepend="prepend" defaultmodefornewitems="read" affectedrows="context"/>
+            <action type="createRow" model="oppty" appendorprepend="append" defaultmodefornewitems="edit" affectedrows="context"/>
+            <action type="unblockUI"/>
+          </actions>
+          <events>
+            <event>models.loaded</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+    <model id="NewModel" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+      <fields/>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="requeryModels" behavior="standard">
+              <models>
+                <model>oppty</model>
+              </models>
+            </action>
+          </actions>
+          <events>
+            <event>row.created</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+  </models>
+  <pageregioncontents>
+    <pageregioncontent regionid="sk-3P985L-193" uniqueid="sk-3P99V2-80">
+      <components>
+        <richtext multiple="false" uniqueid="sk-3P9CLl-89">
+          <contents>&lt;p&gt;Hello&lt;/p&gt;
+</contents>
+        </richtext>
+        <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="oppty" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3QVReh-145">
+          <fields>
+            <field id="AccountId" hideable="true" uniqueid="fi-3QVUBV-160"/>
+            <field id="Amount" hideable="true" uniqueid="fi-3QVUBV-161"/>
+            <field id="TEFirst__Approval_Status__c" hideable="true" uniqueid="fi-3QVUBV-162"/>
+          </fields>
+          <rowactions>
+            <action type="edit"/>
+            <action type="delete"/>
+          </rowactions>
+          <massactions usefirstitemasdefault="true">
+            <action type="massupdate"/>
+            <action type="massdelete"/>
+          </massactions>
+          <views>
+            <view type="standard"/>
+          </views>
+        </skootable>
+      </components>
+    </pageregioncontent>
+  </pageregioncontents>
+  <components/>
+  <resources>
+    <labels/>
+    <css/>
+    <javascript/>
+  </resources>
+</skuidpage>

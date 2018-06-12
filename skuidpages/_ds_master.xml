@@ -1,0 +1,157 @@
+<skuidpage unsavedchangeswarning="" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false">
+  <models>
+    <model id="Accounts" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Account">
+      <fields>
+        <field id="Id"/>
+        <field id="Name"/>
+        <field id="AccountNumber"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+    <model id="UIOnly" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+      <fields/>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="custom" snippet="newSnippet"/>
+          </actions>
+          <events>
+            <event>row.created</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+  </models>
+  <components>
+    <pageregion uniqueid="sk-7kVpx-101">
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+      <renderconditions logictype="and"/>
+    </pageregion>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="newSnippet" cachelocation="false">var params = arguments[0],
+    $ = skuid.$;
+skuid.$(function() {
+    var nav = skuid.$('.sk-navigation-item');
+    var navItem = ''
+    for (i = 0; i &lt; nav.length; i++) {
+        if (nav[i].textContent === 'Home' &amp;&amp; skuid.page.name === 'ds_home') {
+            navItem = '#' + nav[i].id + ' span';
+            console.log('1', navItem)
+            skuid.$(navItem).addClass('hmm');
+        }
+
+        if (nav[i].textContent === 'Accounts' &amp;&amp; skuid.page.name === 'ds_AccountDetail') {
+            navItem = '#' + nav[i].id + ' span';
+            console.log('bbbb2', navItem)
+            skuid.$(navItem).addClass('hmm');
+        }
+    }
+});</jsitem>
+    </javascript>
+    <css>
+      <cssitem location="inline" name="hmm" cachelocation="false">.hmm{
+    color:red;
+}</cssitem>
+    </css>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="color">
+      <styles>
+        <styleitem property="background-color" value="white"/>
+      </styles>
+    </styleitem>
+  </styles>
+  <pageregioncontents>
+    <pageregioncontent uniqueid="__header">
+      <components>
+        <skuidheader sticky="true">
+          <components>
+            <grid uniqueid="sk-3ZO0aw-104">
+              <divisions>
+                <division behavior="fit" verticalalign="center">
+                  <components>
+                    <image source="url" uniqueid="sk-3ZOAtM-119" datasource="Ui-Only" behavior="none" alt="HPE" url="https://h50007.www5.hpe.com/caas-static/images/hpe-logo-white.png">
+                      <styles>
+                        <styleitem type="itemsize" width="custom">
+                          <styles>
+                            <styleitem property="width" value="120px"/>
+                          </styles>
+                        </styleitem>
+                        <styleitem type="border" padding="all" borders="none">
+                          <styles>
+                            <styleitem property="padding" value="5px"/>
+                            <styleitem property="box-sizing" value="border-box"/>
+                          </styles>
+                        </styleitem>
+                      </styles>
+                      <renderconditions logictype="and"/>
+                    </image>
+                  </components>
+                </division>
+                <division behavior="flex" verticalalign="center" ratio="1" minwidth="100px">
+                  <components>
+                    <navigation uniqueid="sk-nav-bar-hpe">
+                      <navigationitems>
+                        <navigationitem label="Home" uniqueid="sk-3ZR6Im-211">
+                          <actions>
+                            <action type="redirect" window="self" url="/apex/skuid__ui?page=ds_home"/>
+                            <action type="custom" snippet="newSnippet"/>
+                          </actions>
+                          <navigationitems/>
+                          <renderconditions logictype="and"/>
+                        </navigationitem>
+                        <navigationitem label="Accounts" uniqueid="sk-3ZRKCE-239">
+                          <actions>
+                            <action type="redirect" window="self" url="/apex/skuid__ui?page=ds_AccountDetail"/>
+                          </actions>
+                        </navigationitem>
+                      </navigationitems>
+                      <styles>
+                        <styleitem property="border-left" value="1px solid #fff"/>
+                        <styleitem property="color" value="#fff"/>
+                      </styles>
+                      <renderconditions logictype="and"/>
+                    </navigation>
+                  </components>
+                </division>
+                <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+                  <components/>
+                </division>
+              </divisions>
+              <styles>
+                <styleitem type="background" bgtype="color">
+                  <styles>
+                    <styleitem property="background-color" value="#425563"/>
+                  </styles>
+                </styleitem>
+              </styles>
+            </grid>
+          </components>
+          <styles>
+            <styleitem type="background" bgtype="none"/>
+            <styleitem type="border"/>
+          </styles>
+        </skuidheader>
+      </components>
+    </pageregioncontent>
+    <pageregioncontent uniqueid="__footer">
+      <components>
+        <skuidfooter sticky="true">
+          <components/>
+          <styles>
+            <styleitem type="background" bgtype="none"/>
+            <styleitem type="border"/>
+          </styles>
+        </skuidfooter>
+      </components>
+    </pageregioncontent>
+  </pageregioncontents>
+  <interactions/>
+</skuidpage>

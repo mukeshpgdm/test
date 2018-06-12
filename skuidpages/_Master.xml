@@ -1,0 +1,151 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" useviewportmeta="true" showsidebar="false" showheader="false" theme="Lightning Design">
+  <models>
+    <model id="NewModel" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+      <fields>
+        <field id="Objects" displaytype="TEXT" defaultvaluetype="multiple" defaultValue="" enclosevalueinquotes="true">
+          <values>
+            <value>Assets</value>
+            <value>Contracts</value>
+          </values>
+        </field>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions/>
+          <events/>
+        </action>
+      </actions>
+    </model>
+    <model id="NewModel1" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Opportunity">
+      <fields>
+        <field id="Amount"/>
+        <field id="TEFirst__Approval_Status__c"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="StageName" state="filterableon" inactive="false" name="StageName"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="NewModel2" query="true" createrowifnonefound="false" datasource="firstAPIs" processonclient="true" type="" verb="GET" endpoint="api/v1/installedbase-account-assets?usrId={{usrId}}">
+      <fields>
+        <field id="ampId"/>
+        <field id="carepackCount"/>
+        <field id="contractDocType"/>
+        <field id="contractEndDate"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" value="" enclosevalueinquotes="true" sourcetype="param" sourceparam="usrId" state="filterableon" inactive="false" name="usrId"/>
+      </conditions>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <pageregion uniqueid="sk-3P985L-193">
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+    </pageregion>
+  </components>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+  <pageregioncontents>
+    <pageregioncontent uniqueid="__header">
+      <components>
+        <skuidheader sticky="true">
+          <components>
+            <grid uniqueid="sk-3ZtG8G-113">
+              <divisions>
+                <division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+                  <components>
+                    <navigation uniqueid="sk-3P8xZs-91">
+                      <navigationitems>
+                        <navigationitem label="Home" uniqueid="sk-3P8xZr-90">
+                          <actions>
+                            <action type="redirect" window="self"/>
+                          </actions>
+                        </navigationitem>
+                        <navigationitem label="Account" uniqueid="sk-3P8zhS-104">
+                          <actions>
+                            <action type="redirect" window="self"/>
+                          </actions>
+                        </navigationitem>
+                      </navigationitems>
+                    </navigation>
+                  </components>
+                </division>
+                <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+                  <components>
+                    <grid uniqueid="sk-3ZtuRR-199">
+                      <divisions>
+                        <division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+                          <components>
+                            <filterset model="NewModel2" searchmethod="server" searchbox="false" uniqueid="sk-3ZyyTw-149" instantfilters="true" emptysearchbehavior="query">
+                              <filters>
+                                <filter type="select" filteroffoptionlabel="New Filter" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="manual" labelmode="no" condition="StageName">
+                                  <sources>
+                                    <source type="manual" effectsbehavior="justdefault">
+                                      <options>
+                                        <option label="New Option" type="complex" value="1">
+                                          <effects>
+                                            <effect action="activate" value="1" condition="usrId"/>
+                                          </effects>
+                                        </option>
+                                        <option label="New Option" type="simple" value="2"/>
+                                        <option label="New Option" type="simple" value="3"/>
+                                      </options>
+                                    </source>
+                                  </sources>
+                                </filter>
+                              </filters>
+                              <searchfields/>
+                            </filterset>
+                          </components>
+                        </division>
+                        <division behavior="fit" verticalalign="center">
+                          <components>
+                            <search uniqueid="sk-3ZtJ-s-123" soslfields="Name Fields">
+                              <resultactions/>
+                              <focushotkeys/>
+                              <objects>
+                                <object datasource="firstAPIs"/>
+                              </objects>
+                              <selectactions/>
+                            </search>
+                          </components>
+                        </division>
+                      </divisions>
+                      <styles>
+                        <styleitem type="background" bgtype="none"/>
+                      </styles>
+                    </grid>
+                  </components>
+                </division>
+              </divisions>
+              <styles>
+                <styleitem type="background" bgtype="none"/>
+              </styles>
+            </grid>
+          </components>
+          <styles>
+            <styleitem type="background" bgtype="none"/>
+            <styleitem type="border"/>
+          </styles>
+        </skuidheader>
+      </components>
+    </pageregioncontent>
+    <pageregioncontent uniqueid="__footer">
+      <components>
+        <skuidfooter sticky="true">
+          <components/>
+        </skuidfooter>
+      </components>
+    </pageregioncontent>
+  </pageregioncontents>
+</skuidpage>

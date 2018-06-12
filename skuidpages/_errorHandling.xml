@@ -1,0 +1,61 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+  <models>
+    <model id="NewModel" query="true" createrowifnonefound="false" datasource="regres_PK" processonclient="true" type="" verb="GET" endpoint="/?prage=20" pathtocontent="data" fieldtargetobjects="data">
+      <fields>
+        <field id="avatar"/>
+        <field id="first_name"/>
+        <field id="id"/>
+        <field id="last_name"/>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="showPopup">
+              <popup title="New Popup" width="90%">
+                <components>
+                  <richtext multiple="false" uniqueid="sk-YqC9e-212">
+                    <contents>&lt;p&gt;Errror&amp;nbsp;{{$CurrentAction.error.message}},&lt;/p&gt;
+</contents>
+                  </richtext>
+                </components>
+              </popup>
+            </action>
+          </actions>
+          <events>
+            <event>row.created</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+  </models>
+  <components>
+    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="NewModel" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-YpW5e-141">
+      <fields>
+        <field id="avatar" hideable="true" uniqueid="fi-YpYlO-157"/>
+        <field id="first_name" hideable="true" uniqueid="fi-YpYlO-158"/>
+        <field id="id" hideable="true" uniqueid="fi-YpYlP-159"/>
+        <field id="last_name" hideable="true" uniqueid="fi-YpYlP-160"/>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+    </skootable>
+  </components>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

@@ -1,0 +1,10 @@
+{
+   "uniqueId": "_ChatBot",
+   "type": "Desktop",
+   "name": "ChatBot",
+   "module": null,
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

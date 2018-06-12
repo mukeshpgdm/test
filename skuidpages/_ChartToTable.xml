@@ -1,0 +1,234 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+  <models>
+    <model id="Opportunities" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="aggregate" sobject="Opportunity">
+      <fields>
+        <field id="Amount" name="sumAmount" function="SUM"/>
+      </fields>
+      <conditions/>
+      <actions/>
+      <groupby method="simple">
+        <field id="StageName" name="stageName"/>
+      </groupby>
+    </model>
+    <model id="OpportunitiesList" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Opportunity">
+      <fields>
+        <field id="Amount"/>
+        <field id="IsClosed"/>
+        <field id="AccountId"/>
+        <field id="Account.Name"/>
+        <field id="Name"/>
+        <field id="StageName"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="StageName" state="filterableon" inactive="false" name="StageName"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="oppty" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="aggregate" sobject="Opportunity">
+      <fields>
+        <field id="Amount" name="sumAmount" function="SUM"/>
+      </fields>
+      <conditions/>
+      <actions/>
+      <groupby method="simple">
+        <field id="CloseDate" name="closeDate"/>
+        <field id="AccountId" name="accountId"/>
+        <field id="Account.Name" name="accountName"/>
+        <field id="StageName" name="stageName"/>
+      </groupby>
+    </model>
+  </models>
+  <components>
+    <tabset rememberlastusertab="true" defertabrendering="true" uniqueid="account-tabs" renderas="">
+      <tabs>
+        <tab name="Open Opportunity" uniqueid="openoppty">
+          <components>
+            <richtext multiple="false" uniqueid="sk-20057R-151">
+              <contents>&lt;p&gt;fsd&lt;/p&gt;
+</contents>
+            </richtext>
+            <image source="staticresource" uniqueid="sk-1-_vGd-133" datasource="salesforce" behavior="none" resource="TEFirst__testStaticExplore" resourceContentType="application/zip">
+              <styles>
+                <styleitem type="itemsize"/>
+                <styleitem type="border"/>
+              </styles>
+            </image>
+            <buttonset uniqueid="sk-1xWHtB-152" model="Opportunities">
+              <buttons>
+                <button type="multi" label="Close Opportunity" uniqueid="sk-1xWIK1-156">
+                  <actions>
+                    <action type="custom" snippet="tabNavigation"/>
+                  </actions>
+                </button>
+              </buttons>
+            </buttonset>
+            <skuidvis__chart model="Opportunities" maintitle="{{Model.labelPlural}}" type="donut" uniqueid="sk-1vslmA-125">
+              <dataaxes>
+                <axis id="axis1"/>
+              </dataaxes>
+              <categoryaxes>
+                <axis id="categories" categorytype="field"/>
+              </categoryaxes>
+              <serieslist>
+                <series valuefield="sumAmount" splittype="field" splitfield="stageName">
+                  <actions>
+                    <action type="setCondition" model="OpportunitiesList" condition="StageName" value="{{{stageName}}}">
+                      <conditions>
+                        <condition type="contextrows" field="Id" mergefield="Id" operator="in" autocreated="true"/>
+                      </conditions>
+                    </action>
+                    <action type="requeryModels" behavior="standard">
+                      <conditions>
+                        <condition type="contextrows" field="Id" mergefield="Id" operator="in" autocreated="true"/>
+                      </conditions>
+                      <models>
+                        <model>OpportunitiesList</model>
+                      </models>
+                    </action>
+                    <action type="showPopup">
+                      <conditions>
+                        <condition type="contextrows" field="Id" mergefield="Id" operator="in" autocreated="true"/>
+                      </conditions>
+                      <popup title="New Popup" width="90%">
+                        <components>
+                          <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="OpportunitiesList" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-1vtHzZ-202">
+                            <fields>
+                              <field id="AccountId" hideable="true" uniqueid="fi-1vtMOb-225"/>
+                              <field id="Amount" hideable="true" uniqueid="fi-1vtMOc-226"/>
+                              <field id="Name" hideable="true" uniqueid="fi-1vtMOc-227"/>
+                              <field id="IsClosed" hideable="true" uniqueid="fi-1vtMOc-228"/>
+                              <field id="StageName" hideable="true" uniqueid="fi-1vtMOc-229"/>
+                            </fields>
+                            <rowactions>
+                              <action type="edit"/>
+                              <action type="delete"/>
+                            </rowactions>
+                            <massactions usefirstitemasdefault="true">
+                              <action type="massupdate"/>
+                              <action type="massdelete"/>
+                            </massactions>
+                            <views>
+                              <view type="standard"/>
+                            </views>
+                            <searchfields/>
+                          </skootable>
+                        </components>
+                        <afterclose/>
+                      </popup>
+                    </action>
+                  </actions>
+                </series>
+              </serieslist>
+              <colors/>
+              <legend layout="vertical" halign="left" valign="bottom"/>
+            </skuidvis__chart>
+          </components>
+        </tab>
+        <tab name="Contacts" loadlazypanels="true">
+          <components>
+            <skuidvis__chart model="oppty" maintitle="{{Model.labelPlural}}" type="column" uniqueid="sk-1_jA2a-151" stacking="true">
+              <dataaxes>
+                <axis id="axis1"/>
+              </dataaxes>
+              <categoryaxes>
+                <axis id="categories" categorytype="field" field="closeDate"/>
+              </categoryaxes>
+              <serieslist>
+                <series valuefield="sumAmount" splittype="field" modelId="oppty" categoryField="closeDate" splitfield="closeDate"/>
+                <series valuefield="sumAmount" splittype="field" splitfield="accountName">
+                  <actions>
+                    <action type="setCondition" model="OpportunitiesList" condition="StageName" value="{{{stageName}}}">
+                      <conditions>
+                        <condition type="contextrows" field="Id" mergefield="Id" operator="in" autocreated="true"/>
+                      </conditions>
+                    </action>
+                    <action type="requeryModels" behavior="standard">
+                      <conditions>
+                        <condition type="contextrows" field="Id" mergefield="Id" operator="in" autocreated="true"/>
+                      </conditions>
+                      <models>
+                        <model>OpportunitiesList</model>
+                      </models>
+                    </action>
+                    <action type="showPopup">
+                      <conditions>
+                        <condition type="contextrows" field="Id" mergefield="Id" operator="in" autocreated="true"/>
+                      </conditions>
+                      <popup title="New Popup" width="90%">
+                        <components>
+                          <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="OpportunitiesList" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-1_lRJ0-281">
+                            <fields>
+                              <field id="Amount" hideable="true" uniqueid="fi-1_lUUj-304"/>
+                              <field id="AccountId" hideable="true" uniqueid="fi-1_lUUj-305"/>
+                              <field id="IsClosed" hideable="true" uniqueid="fi-1_lUUj-306"/>
+                              <field id="Name" hideable="true" uniqueid="fi-1_lUUk-307"/>
+                            </fields>
+                            <rowactions>
+                              <action type="edit"/>
+                              <action type="delete"/>
+                            </rowactions>
+                            <massactions usefirstitemasdefault="true">
+                              <action type="massupdate"/>
+                              <action type="massdelete"/>
+                            </massactions>
+                            <views>
+                              <view type="standard"/>
+                            </views>
+                          </skootable>
+                        </components>
+                      </popup>
+                    </action>
+                  </actions>
+                </series>
+              </serieslist>
+              <colors/>
+              <legend layout="horizontal" halign="center" valign="bottom"/>
+            </skuidvis__chart>
+          </components>
+        </tab>
+        <tab name="IB" loadlazypanels="true">
+          <components/>
+        </tab>
+        <tab name="Closed Opportunity" loadlazypanels="true" uniqueid="closedoppty">
+          <components>
+            <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="OpportunitiesList" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-1xWUgH-191">
+              <fields>
+                <field id="Name" hideable="true" uniqueid="fi-1xWZ6y-217" valuehalign="" type=""/>
+                <field id="Amount" hideable="true" uniqueid="fi-1xWZ6x-214"/>
+                <field id="AccountId" hideable="true" uniqueid="fi-1xWZ6y-215"/>
+                <field id="IsClosed" hideable="true" uniqueid="fi-1xWZ6y-216"/>
+              </fields>
+              <rowactions>
+                <action type="edit"/>
+                <action type="delete"/>
+              </rowactions>
+              <massactions usefirstitemasdefault="true">
+                <action type="massupdate"/>
+                <action type="massdelete"/>
+              </massactions>
+              <views>
+                <view type="standard"/>
+              </views>
+              <searchfields/>
+              <renderconditions logictype="and"/>
+            </skootable>
+          </components>
+        </tab>
+      </tabs>
+    </tabset>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="tabNavigation" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+	$.blockUI({ message: 'Loading all closed Opportunity...' });
+    $( "#account-tabs" ).tabs( "option", "active", 3 );
+    $.unblockUI();</jsitem>
+    </javascript>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

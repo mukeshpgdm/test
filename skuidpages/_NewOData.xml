@@ -1,0 +1,332 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" useviewportmeta="true" showsidebar="true" showheader="true">
+  <models>
+    <model id="NewModel" query="true" createrowifnonefound="false" datasource="Sample Test" processonclient="true" deferfieldrendering="true" sobject="ODataWebV3.Northwind.Model.Customers" label="Customer" labelplural="Customers" namefield="ContactName">
+      <fields>
+        <field id="CompanyName"/>
+        <field id="ContactName"/>
+        <field id="ContactTitle"/>
+        <field id="Country"/>
+        <field id="City"/>
+        <field id="Address"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+    <model id="NewModel1" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="RecentlyViewed">
+      <fields>
+        <field id="IsActive"/>
+        <field id="Alias"/>
+        <field id="Email"/>
+        <field id="FirstName"/>
+        <field id="InformalName"/>
+        <field id="Language"/>
+        <field id="LastName"/>
+        <field id="LastViewedDate"/>
+        <field id="LastReferencedDate"/>
+        <field id="MiddleName"/>
+        <field id="Name"/>
+        <field id="Phone"/>
+        <field id="ProfileId"/>
+        <field id="Profile.Name"/>
+        <field id="Id"/>
+        <field id="RecordTypeId"/>
+        <field id="RecordType.Name"/>
+        <field id="UserRoleId"/>
+        <field id="UserRole.Name"/>
+        <field id="Suffix"/>
+        <field id="Title"/>
+        <field id="Type"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="true" pagesize="5" alwaysresetpagination="false" createrecords="true" model="NewModel" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3jFl0B-216" emptysearchbehavior="query">
+      <fields>
+        <field id="Address" hideable="true" uniqueid="fi-3jFpKr-232" valuehalign="" type="" allowordering="true"/>
+        <field id="City" hideable="true" uniqueid="fi-3jFpKs-233" valuehalign="" type="" allowordering="true"/>
+        <field id="CompanyName" hideable="true" uniqueid="fi-3jFpKs-234" valuehalign="" type="" allowordering="true"/>
+        <field id="ContactName" hideable="true" uniqueid="fi-3jFpKt-235" valuehalign="" type="" allowordering="true"/>
+        <field id="Country" hideable="true" uniqueid="fi-3jFpKu-237" valuehalign="" type="" allowordering="true"/>
+        <field id="ContactTitle" hideable="true" uniqueid="fi-3jFpKt-236" valuehalign="" type="" allowordering="true"/>
+      </fields>
+      <rowactions>
+        <action type="popup" icon="sk-icon-popup" label="View record details">
+          <popup width="80%" title="Viewing {{Model.label}}: {{Name}}">
+            <components>
+              <basicfieldeditor showheader="true" showsavecancel="true" mode="edit" model="NewModel" uniqueid="sk-3jGg0P-376" buttonposition="">
+                <conditions>
+                  <condition type="contextrow" field="Id" mergefield="Id" autocreated="true"/>
+                </conditions>
+                <columns>
+                  <column width="50%">
+                    <sections>
+                      <section title="Section A">
+                        <fields>
+                          <field id="CompanyName" uniqueid="sk-3jGg01-363"/>
+                          <field id="ContactName" uniqueid="sk-3jGg03-365"/>
+                          <field id="ContactTitle" uniqueid="sk-3jGg06-367"/>
+                        </fields>
+                      </section>
+                    </sections>
+                  </column>
+                  <column width="50%">
+                    <sections>
+                      <section title="Section B">
+                        <fields>
+                          <field id="Country" uniqueid="sk-3jGg0E-371" valuehalign="" type=""/>
+                          <field id="City" uniqueid="sk-3jGg0G-373"/>
+                          <field id="Address" uniqueid="sk-3jGg0I-375"/>
+                        </fields>
+                      </section>
+                    </sections>
+                  </column>
+                </columns>
+              </basicfieldeditor>
+            </components>
+          </popup>
+        </action>
+        <action type="delete"/>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+      <filters/>
+      <exportproperties usetablecolumns="true"/>
+      <searchfields/>
+      <renderconditions logictype="or">
+        <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="NewModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" fieldtargetobjects="ODataWebV3.Northwind.Model.Customers" sourceproperty="hasRows" operator="contains" field="City" value="l"/>
+      </renderconditions>
+      <actions defaultlabel="Global Actions" defaulticon="sk-icon-magic" usefirstitemasdefault="true"/>
+    </skootable>
+    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="NewModel1" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-6faEk-179">
+      <fields>
+        <field id="IsActive" hideable="true" uniqueid="fi-6fsfV-195"/>
+        <field id="Alias" hideable="true" uniqueid="fi-6fsfW-196"/>
+        <field id="Email" hideable="true" uniqueid="fi-6fsfW-197"/>
+        <field id="FirstName" hideable="true" uniqueid="fi-6fsfW-198"/>
+        <field id="InformalName" hideable="true" uniqueid="fi-6fsfW-199"/>
+        <field id="Language" hideable="true" uniqueid="fi-6fsfX-200"/>
+        <field id="LastName" hideable="true" uniqueid="fi-6fsfX-201"/>
+        <field id="LastReferencedDate" hideable="true" uniqueid="fi-6fsfX-202"/>
+        <field id="LastViewedDate" hideable="true" uniqueid="fi-6fsfX-203"/>
+        <field id="MiddleName" hideable="true" uniqueid="fi-6fsfY-204"/>
+        <field id="Phone" hideable="true" uniqueid="fi-6fsfY-205"/>
+        <field id="Name" hideable="true" uniqueid="fi-6fsfY-206"/>
+        <field id="ProfileId" hideable="true" uniqueid="fi-6fsfY-207"/>
+        <field id="Id" hideable="true" uniqueid="fi-6fsfY-208"/>
+        <field id="RecordTypeId" hideable="true" uniqueid="fi-6fsfZ-209"/>
+        <field id="RecordType.Name" hideable="true" uniqueid="fi-6fsfZ-210"/>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+    </skootable>
+    <wizard deferstepcontentsrendering="false" buttonslocation="top" uniqueid="sk-3n54Lr-127">
+      <steps>
+        <step stepid="step1" steplabel="1-Prospect">
+          <components>
+            <buttonset uniqueid="sk-3n5SSd-152" model="NewModel">
+              <buttons/>
+            </buttonset>
+          </components>
+          <actions>
+            <action uniqueid="sk-3n54Lq-124" type="navigate" stepid="step2" label="Next Step" icon="sk-icon-arrow-right" window="self"/>
+          </actions>
+        </step>
+        <step stepid="step2" steplabel="2-Commit">
+          <components>
+            <navigation uniqueid="sk-3n5WhV-161">
+              <navigationitems>
+                <navigationitem label="New Navigation Item" uniqueid="sk-3n5WhU-160">
+                  <actions>
+                    <action type="redirect" window="self"/>
+                  </actions>
+                </navigationitem>
+              </navigationitems>
+            </navigation>
+          </components>
+          <actions>
+            <action uniqueid="sk-3n54Lr-125" type="navigate" stepid="step1" label="Previous Step" icon="sk-icon-arrow-left" secondary="true"/>
+            <action uniqueid="sk-3n54Lr-126" type="navigate" label="Next Step" icon="sk-icon-arrow-right"/>
+          </actions>
+        </step>
+      </steps>
+    </wizard>
+    <skuidvis__chart model="NewModel" maintitle="{{Model.labelPlural}}" type="donut" uniqueid="sk-3jXR0Z-109" rendersnippet="chartPercentages" subtitle="">
+      <dataaxes>
+        <axis id="axis1"/>
+      </dataaxes>
+      <categoryaxes>
+        <axis id="categories" categorytype="field"/>
+      </categoryaxes>
+      <serieslist>
+        <series valuefield="Country" splittype="template" modelId="NewModel" aggfunction="count" splitfield="Country" splittemplate="&lt;div style=&quot;border:1px solid red;height=100px&quot;&gt;&#10;{{Country}} : {{Count}}&#10;&lt;/div&gt;">
+          <actions>
+            <action type="toggleSlidingPanel">
+              <conditions>
+                <condition type="contextrows" field="Id" mergefield="Id" operator="in" autocreated="true"/>
+              </conditions>
+              <panel title="Sliding Panel Contents" uniqueid="sk-3jZL_b-139" size="270px" origin="left" closeonpageclick="true" behavior="overlay">
+                <components/>
+              </panel>
+            </action>
+          </actions>
+        </series>
+      </serieslist>
+      <colors/>
+      <legend layout="horizontal" halign="center" valign="bottom" showlabels="true"/>
+      <allowedtypes>
+        <type>pie</type>
+      </allowedtypes>
+      <renderconditions logictype="and"/>
+    </skuidvis__chart>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="chartPercentages" cachelocation="false">var chartObj = arguments[0],
+
+	$ = skuid.$;
+console.log(chartObj)
+/*$.extend(true, chartObj.title,{
+        text: 'Browser&lt;br&gt;shares&lt;br&gt;2015',
+        align: 'center',
+        verticalAlign: 'middle'
+    
+})*/
+//$.extend(true, chartObj.title,{text:false})
+
+
+chartObj.chart.events={
+          load:function(){
+        	  var chart = this,
+          	  series = chart.series[0],
+              firstPoint = series.data[1].y,
+              nextPoint = series.data[0].y,
+              percent = ((nextPoint / firstPoint) * 100 || 0),
+          	  value = 0;
+          	  
+             chart.setTitle({
+              	text: percent.toFixed(1) + 'dd%',
+              	align: 'center',
+                verticalAlign: 'middle',
+                //id:'donutMukesh',
+                //style: { "color": "#8064A2", "fontSize": "30px" }
+                
+              });
+        },
+        render:function(){
+            console.log('Inside')
+        }
+    
+};
+    chartObj.plotOptions.pie.dataLabels= {
+    enabled: false,
+    format: '&lt;b&gt;{point.name}&lt;/b&gt;: {point.y:,.0f}',
+        
+        };
+  
+   // custom Color
+    //chartObj.colors =  ['#8064A2', '#A6A6A6'];
+    
+   
+    chartObj.plotOptions.pie.events = {
+        mouseOver: function(){
+            console.log('sssssssssss',chartObj);
+            //var chart = this,
+            /*this.settitle({
+              	text: 'dddd',
+              	align: 'center',
+                verticalAlign: 'middle',
+                style: { "color": "#8064A2", "fontSize": "30px" }
+                
+              });
+              */
+              chartObj.title,{
+                            text: 'Mukesh',
+                            align: 'center',
+                            verticalAlign: 'middle',
+                            innerText: 'ddd'
+                        }
+        }
+    }
+
+$.extend(true, chartObj.plotOptions,{
+
+        pie: {
+
+            dataLabels: {
+
+                enabled: true,
+
+                formatter: function () {
+
+                    return this.point.name + ' ' + this.percentage.toFixed(2) + '%';
+
+                    }
+
+            },
+            states:{
+                    hover:{
+                        halo: {
+                            attributes:{text: 'sss'
+                            },
+                            opacity: 0.25,
+                            size: 10
+                        }
+                    },
+                    select: {
+                         fill:"#eee",
+                        'stroke-width': 10
+                    }
+            },
+           /* events: {
+                    mouseOver: function(){
+                        console.log(this);
+                        console.log(chartObj);
+                        chartObj.title,{
+                            text: 'Mukesh',
+                            align: 'center',
+                            verticalAlign: 'middle',
+                            innerText: 'ddd'
+                        }
+                        //this.point.innerText.attr({text: this.y});
+                    }, 
+                    mouseOut: function(){
+                       // this.point.innerText.attr({text: 112});
+                    }
+                },
+            */
+            innerSize: '90%',
+            allowPointSelect: true,
+            animationTimeout:10,
+            size:'80%',
+            slicedOffset: 5
+
+        }
+ 
+});</jsitem>
+    </javascript>
+    <css>
+      <cssitem location="inline" name="newcss" cachelocation="false">.sk-chart-innertext {    display: none;
+}</cssitem>
+    </css>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

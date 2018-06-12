@@ -1,0 +1,181 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true" theme="dsHPeDigitalSeller">
+  <models>
+    <model id="UIOnlyToggle" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+      <fields>
+        <field id="Type" displaytype="PICKLIST" ogdisplaytype="TEXT" defaultvaluetype="fieldvalue" defaultValue="Opportunity" mergefield="Type" enclosevalueinquotes="true" picklistsource="manual">
+          <picklistentries>
+            <entry value="Opportunity" label="Opportunity"/>
+            <entry value="Account" label="Account"/>
+          </picklistentries>
+        </field>
+        <field id="value" displaytype="TEXT" label="value"/>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="save">
+              <models>
+                <model>UIOnlyToggle</model>
+              </models>
+            </action>
+          </actions>
+          <events>
+            <event>row.updated</event>
+          </events>
+          <fields>
+            <field>Type</field>
+          </fields>
+        </action>
+      </actions>
+    </model>
+    <model id="NewModel" limit="20" query="false" createrowifnonefound="true" datasource="salesforce" type="" sobject="Task">
+      <fields>
+        <field id="OwnerId"/>
+        <field id="Owner.Name"/>
+        <field id="WhatId"/>
+        <field id="What.Name"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+    <model id="TemporaryTask" query="true" createrowifnonefound="false" datasource="Ui-Only" processonclient="true">
+      <fields/>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <basicfieldeditor showheader="true" showsavecancel="true" showerrorsinline="true" model="NewModel" buttonposition="" uniqueid="sk-33vfdN-914" mode="edit" layout="">
+      <columns>
+        <column width="50%">
+          <sections>
+            <section title="Section A" collapsible="no">
+              <fields>
+                <field uniqueid="sk-33vibj-926" id="OwnerId"/>
+                <field uniqueid="sk-33vibj-927" id="WhatId" valuehalign="" type="" optionsource="" pagesize="5" redirecttype="datasourcedefault" cssclass="customWhatId">
+                  <filters/>
+                  <renderconditions logictype="and" onhidedatabehavior="keep"/>
+                  <enableconditions/>
+                </field>
+              </fields>
+            </section>
+          </sections>
+        </column>
+        <column width="50%">
+          <sections>
+            <section title="Section B">
+              <fields/>
+            </section>
+          </sections>
+        </column>
+      </columns>
+      <renderconditions logictype="and"/>
+    </basicfieldeditor>
+    <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="UIOnlyToggle" buttonposition="" uniqueid="sk-33ohxy-462" mode="edit" layout="">
+      <columns layoutmode="fixed">
+        <column width="100%">
+          <sections>
+            <section title="New Section" collapsible="no">
+              <fields>
+                <field uniqueid="sk-33omg8-488" id="Type" valuehalign="" type="" required="true">
+                  <label>Related To</label>
+                </field>
+              </fields>
+            </section>
+          </sections>
+        </column>
+      </columns>
+    </basicfieldeditor>
+    <grid uniqueid="sk-33mozy-302">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1">
+          <components>
+            <search uniqueid="sk-33kozu-109" soslfields="Name Fields" placeholdertext="Search Account" boxwidth="200px" preventchange="true">
+              <resultactions/>
+              <focushotkeys/>
+              <objects>
+                <object datasource="salesforce" id="Account" fields="Name" orderby="Name ASC">
+                  <fields>
+                    <field id="Name"/>
+                  </fields>
+                </object>
+              </objects>
+              <selectactions/>
+            </search>
+          </components>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+      <renderconditions logictype="and">
+        <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="true" fieldmodel="UIOnlyToggle" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="Type" value="Account"/>
+      </renderconditions>
+    </grid>
+    <grid uniqueid="sk-33msCQ-309">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+          <components>
+            <search uniqueid="sk-33kpu9-117" soslfields="Name Fields" placeholdertext="Search Opportunity" boxwidth="200px">
+              <objects>
+                <object datasource="salesforce" id="Opportunity" fields="Name" orderby="Name ASC">
+                  <fields>
+                    <field id="Name"/>
+                  </fields>
+                </object>
+              </objects>
+              <selectactions>
+                <action type="updateRow" fieldmodel="UIOnlyToggle" affectedrows="context" field="value" enclosevalueinquotes="true"/>
+                <action type="save">
+                  <models>
+                    <model>UIOnlyToggle</model>
+                  </models>
+                </action>
+              </selectactions>
+              <focushotkeys/>
+              <resultactions/>
+            </search>
+          </components>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+      <renderconditions logictype="and">
+        <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="UIOnlyToggle" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" sourceproperty="hasRows" operator="=" field="Type" value="Opportunity"/>
+      </renderconditions>
+    </grid>
+    <buttonset model="TemporaryTask" uniqueid="sk-33tccN-836">
+      <buttons>
+        <button type="multi" label="New Button" uniqueid="sk-33td1_-841">
+          <actions>
+            <action type="updateRow" fieldmodel="NewModel" affectedrows="context" field="WhatId" fieldtargetobjects="Account,Asset,Campaign,Case,Contract,ContractLineItem,Entitlement,LiveAgentSession,LiveChatTranscript,Opportunity,Order,Product2,ServiceContract,Solution" enclosevalueinquotes="true" value="$Model.OpenTasks.data.0.Id"/>
+            <action type="save"/>
+          </actions>
+        </button>
+      </buttons>
+    </buttonset>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inline" name="newInlineJS" cachelocation="false" url="">(function(skuid){
+	var $ = skuid.$;
+	$(document.body).one('pageload',function(){
+	   var selectOpt= $(".customWhatId").children().children("label.nx-basicfieldeditor-item-select-label").children().children();
+	   $(selectOpt).each(function() {
+            if(this.value !== "001" &amp;&amp; this.value !== "006"){
+                console.log('sss',this.value)
+                $(this).hide();
+            }
+        });
+	});
+})(skuid);</jsitem>
+    </javascript>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

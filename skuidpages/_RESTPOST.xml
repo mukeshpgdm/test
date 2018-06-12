@@ -1,0 +1,92 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false" theme="Lightning Design">
+  <models>
+    <model id="Users" query="false" createrowifnonefound="false" datasource="regres_PK" processonclient="true" type="readwrite">
+      <fields>
+        <field id="first_name" displaytype="TEXT"/>
+        <field id="avatar" displaytype="TEXT"/>
+        <field id="Id" displaytype="TEXT"/>
+        <field id="last_name" displaytype="TEXT"/>
+      </fields>
+      <conditions/>
+      <actions/>
+      <methods>
+        <method type="query" verb="GET" endpoint="/users"/>
+        <method type="insert" verb="POST" successif="requestsucceeds" sendchanges="asjsoninbody" insertresponse="recordinbody" endpoint="/users"/>
+      </methods>
+    </model>
+    <model id="OnPageLoad_Driver" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true" unloadwarningifunsavedchanges="false">
+      <fields/>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="createRow" model="Users" appendorprepend="prepend" defaultmodefornewitems="edit" affectedrows="context">
+              <defaults>
+                <default type="fieldvalue" field="first_name" enclosevalueinquotes="true" value="PAGE"/>
+                <default type="fieldvalue" field="last_name" enclosevalueinquotes="true" value="LOAD"/>
+              </defaults>
+            </action>
+            <action type="save">
+              <models>
+                <model>Users</model>
+              </models>
+            </action>
+          </actions>
+          <events>
+            <event>row.created</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+  </models>
+  <components>
+    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="Users" buttonposition="" mode="edit" allowcolumnreordering="true" responsive="true" uniqueid="sk-1Vxc5N-168">
+      <fields>
+        <field id="first_name" hideable="true" uniqueid="fi-1VxdWG-183"/>
+        <field id="last_name" hideable="true" uniqueid="fi-1VxdWG-184"/>
+        <field id="avatar" hideable="true" uniqueid="fi-1VxdWH-185"/>
+        <field id="id" hideable="true" uniqueid="fi-1VxdWH-186"/>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+    </skootable>
+  </components>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css/>
+    <actionsequences uniqueid="sk-1Vl8y--214">
+      <actionsequence id="5accbba4-23ed-4fc3-bb1f-a63c3a8995d6" label="OnPageLoadActions" type="reusable" event-scope="component" event-name="page.rendered" event-channel="Test" uniqueid="sk-1Vnv5s-622">
+        <description/>
+        <actions>
+          <action type="requeryModel" model="Users" behavior="standard"/>
+          <action type="createRow" model="Users" appendorprepend="prepend" defaultmodefornewitems="edit" affectedrows="context">
+            <defaults>
+              <default type="fieldvalue" field="first_name" enclosevalueinquotes="true" value="PAGE"/>
+              <default type="fieldvalue" field="last_name" enclosevalueinquotes="true" value="LOAD"/>
+              <default type="fieldvalue" field="id" enclosevalueinquotes="true" value="9999"/>
+            </defaults>
+          </action>
+          <action type="save" rollbackonanyerror="true">
+            <models>
+              <model>Users</model>
+            </models>
+          </action>
+        </actions>
+        <inputs/>
+      </actionsequence>
+    </actionsequences>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

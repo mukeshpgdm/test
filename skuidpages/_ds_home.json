@@ -1,0 +1,10 @@
+{
+   "uniqueId": "_ds_home",
+   "type": "Desktop",
+   "name": "ds_home",
+   "module": null,
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": "_ds_master",
+   "isMasterPage": false,
+   "composerSettings": null
+}

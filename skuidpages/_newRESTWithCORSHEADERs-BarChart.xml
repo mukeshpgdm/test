@@ -1,0 +1,100 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+  <models>
+    <model id="assets" query="true" createrowifnonefound="false" datasource="local" processonclient="true" type="" verb="GET" endpoint="installedbase-ampssummaries" pathtocontent="data" fieldtargetobjects="data">
+      <fields>
+        <field id="supportType" displaytype="TEXT"/>
+        <field id="valueGlobal"/>
+        <field id="valueLocal"/>
+        <field id="ampId"/>
+        <field id="ampName"/>
+        <field id="expiryDate"/>
+        <field id="totalValue"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+    <model id="APIData" query="true" createrowifnonefound="false" datasource="firstAPIs" processonclient="true" type="" verb="GET" endpoint="installedbase-ampssummaries?usrId=21772337" pathtocontent="data" fieldtargetobjects="data">
+      <fields>
+        <field id="valueGlobal"/>
+        <field id="gapValue"/>
+        <field id="ampId"/>
+        <field id="accountName"/>
+        <field id="accountId"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <skuidvis__chart model="APIData" maintitle="{{Model.labelPlural}}" type="bar" uniqueid="sk-3PZNa2-129" stacking="true" rendersnippet="newSnippet">
+      <dataaxes>
+        <axis id="axis1"/>
+      </dataaxes>
+      <categoryaxes>
+        <axis id="categories" categorytype="field" field="accountName"/>
+      </categoryaxes>
+      <serieslist>
+        <series valuefield="gapValue" splittype="none"/>
+        <series valuefield="valueGlobal" splittype="field" splitfield="accountName"/>
+      </serieslist>
+      <colors/>
+      <legend layout="horizontal" halign="center" valign="bottom"/>
+    </skuidvis__chart>
+    <skuidvis__chart model="assets" maintitle="{{Model.labelPlural}}" type="bar" uniqueid="sk-C8rO_-158" rendersnippet="newSnippet" stacking="true">
+      <dataaxes>
+        <axis id="axis1"/>
+      </dataaxes>
+      <categoryaxes>
+        <axis id="categories" categorytype="field" field="ampName"/>
+      </categoryaxes>
+      <serieslist>
+        <series valuefield="totalValue" splittype="template" splitfield="supportType" splittemplate=""/>
+        <series valuefield="valueGlobal" splittype="field" splitfield="ampName" dataAxisId="axis1">
+          <actions/>
+        </series>
+      </serieslist>
+      <colors>
+        <value>blue</value>
+        <value>#eee</value>
+      </colors>
+      <legend layout="horizontal" halign="center" valign="bottom"/>
+      <renderconditions logictype="and"/>
+    </skuidvis__chart>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="newSnippet" cachelocation="false">var chartObj = arguments[0],
+$ = skuid.$;
+s = chartObj.series;
+ind = 0,
+console.log(s)
+ $.each(s, function (i, s){	
+     console.log('______',s)
+     if(s.id === "APIData"){
+         ind = 1;
+     }else{
+         ind = 0;
+     }
+      $.extend(true, chartObj.series[i],{
+          _colorIndex: ind
+        });
+ });
+ 
+$.extend(chartObj,{
+   
+    plotOptions: {
+        series: {
+            stacking: 'percent'
+        }
+    }
+});
+
+console.log(chartObj)</jsitem>
+    </javascript>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

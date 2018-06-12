@@ -1,0 +1,62 @@
+<skuidpage unsavedchangeswarning="yes" showsidebar="true" showheader="true">
+  <models>
+    <model id="Contacts" limit="20" query="true" createrowifnonefound="false" sobject="Contact">
+      <fields>
+        <field id="FirstName"/>
+        <field id="LastName"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <custom name="AngularComp"/>
+    <skootable showconditions="true" showsavecancel="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="Contacts" buttonposition="" mode="read">
+      <fields>
+        <field id="FirstName" valuehalign="" type=""/>
+        <field id="LastName" valuehalign="" type=""/>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+    </skootable>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="external" name="angular" cachelocation="false" url="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+      <jsitem location="inlinecomponent" name="AngularComp" cachelocation="false" url="">var element = arguments[0],
+	$ = skuid.$;
+	
+	
+	element.html('&lt;ul&gt;&lt;li ng-repeat="contact in contacts"&gt;{{contact.FirstName}} {{contact.LastName}}&lt;/li&gt;&lt;/ul&gt;&lt;div ng-repeat="contact in contacts"&gt;&lt;input ng-model="contact.FirstName"&gt;&lt;/input&gt;&lt;input ng-model="contact.LastName"&gt;&lt;/input&gt;&lt;/div&gt;');
+	element.attr('ng-controller','MyController');
+
+angular.module('myApp', [])
+  .controller('MyController', ['$scope', function ($scope) {
+    $scope.contacts = skuid.model.getModel('Contacts').data;
+    
+    $scope.$watch('contacts', function(oldval,newval){
+        console.log('Old: ' + oldval);
+        console.log('New: ' + newval);
+    });
+    
+  }]);
+
+angular.element(element).ready(function() {
+  angular.bootstrap(element, ['myApp']);
+});</jsitem>
+    </javascript>
+    <css/>
+  </resources>
+</skuidpage>

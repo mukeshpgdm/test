@@ -1,0 +1,215 @@
+<skuidpage unsavedchangeswarning="yes" theme="salesCloud">
+  <models/>
+  <pageregioncontents>
+    <pageregioncontent regionid="sk-coTUr-469" uniqueid="sk-cqRUR-94">
+      <components>
+        <grid uniqueid="sk-cwNOK-387">
+          <divisions>
+            <division behavior="flex" minwidth="100px" ratio="1">
+              <components>
+                <mycustomcomponents__customwrapper uniqueid="sk-Rzc0i-174" model="currentUser">
+                  <components/>
+                </mycustomcomponents__customwrapper>
+                <dsc_customcomponents__popupwrapper uniqueid="sk-RzakR-168" model="currentUser" iconProp="sk-icon-add">
+                  <components/>
+                </dsc_customcomponents__popupwrapper>
+                <wrapper uniqueid="sk-cslwH-113">
+                  <components>
+                    <wrapper uniqueid="sk-cw4UI-362">
+                      <components/>
+                      <styles>
+                        <styleitem type="background"/>
+                        <styleitem type="border"/>
+                        <styleitem type="size"/>
+                      </styles>
+                    </wrapper>
+                    <mynewcomponent__sayhello person="MukeshK" uniqueid="sk-i60MP-168"/>
+                    <wrapper uniqueid="sk-ctH8n-139">
+                      <components>
+                        <richtext multiple="false" uniqueid="sk-ctPPU-158">
+                          <contents>&lt;p style="text-align: center;"&gt;&lt;span style="color:#40e0d0;"&gt;&lt;span style="font-size:16px;"&gt;THE SKUID SALES CLOUD&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+</contents>
+                        </richtext>
+                        <wrapper uniqueid="sk-ctKob-146">
+                          <components>
+                            <richtext multiple="false" uniqueid="sk-ctNC4-153">
+                              <contents>&lt;p style="text-align: center;"&gt;&lt;span style="font-size:36px;"&gt;&lt;span style="font-family:&amp;quot;Lucida Sans Unicode&amp;quot;,&amp;quot;Lucida Grande&amp;quot;,sans-serif;"&gt;OPPORTUNITY MANAGEMENT PLATFORM&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+</contents>
+                            </richtext>
+                            <wrapper uniqueid="sk-ctf_7-173">
+                              <components>
+                                <search uniqueid="searchText" soslfields="Name Fields" boxwidth="100%" cssclass="landing-search" placeholdertext="What are you looking for?">
+                                  <objects/>
+                                  <focushotkeys/>
+                                  <selectactions/>
+                                  <resultactions/>
+                                </search>
+                              </components>
+                              <styles>
+                                <styleitem type="background"/>
+                                <styleitem type="border"/>
+                                <styleitem type="size"/>
+                              </styles>
+                            </wrapper>
+                          </components>
+                          <styles>
+                            <styleitem type="background"/>
+                            <styleitem type="border" padding="bottom,">
+                              <styles>
+                                <styleitem property="padding-bottom" value="32px"/>
+                                <styleitem property="box-sizing" value="border-box"/>
+                              </styles>
+                            </styleitem>
+                            <styleitem type="size"/>
+                          </styles>
+                        </wrapper>
+                      </components>
+                      <styles>
+                        <styleitem type="background"/>
+                        <styleitem type="border"/>
+                        <styleitem type="size"/>
+                      </styles>
+                    </wrapper>
+                  </components>
+                  <styles>
+                    <styleitem type="background"/>
+                    <styleitem type="border" padding="all">
+                      <styles>
+                        <styleitem property="padding" value="10px"/>
+                        <styleitem property="box-sizing" value="border-box"/>
+                      </styles>
+                    </styleitem>
+                    <styleitem type="size" height="custom" width="custom">
+                      <styles>
+                        <styleitem property="min-height" value="352px"/>
+                      </styles>
+                    </styleitem>
+                  </styles>
+                </wrapper>
+              </components>
+            </division>
+          </divisions>
+          <styles>
+            <styleitem type="background" bgtype="none"/>
+          </styles>
+        </grid>
+        <grid uniqueid="sk-cwCc4-373" columngutter="24px">
+          <divisions>
+            <division behavior="flex" minwidth="100px" ratio="1">
+              <components>
+                <image source="staticresource" uniqueid="sk-cylTG-421" datasource="salesforce" behavior="none" resource="TEFirst__newRequest" resourceContentType="image/svg+xml" cssclass="landing-image">
+                  <styles>
+                    <styleitem type="itemsize"/>
+                    <styleitem type="border"/>
+                  </styles>
+                </image>
+              </components>
+            </division>
+            <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+              <components>
+                <image source="staticresource" uniqueid="sk-cymIB-427" datasource="salesforce" behavior="none" resource="TEFirst__dashboard" resourceContentType="image/svg+xml" cssclass="landing-image">
+                  <styles>
+                    <styleitem type="itemsize"/>
+                    <styleitem type="border"/>
+                  </styles>
+                </image>
+              </components>
+            </division>
+            <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+              <components>
+                <image source="staticresource" uniqueid="sk-cyn3W-433" datasource="salesforce" behavior="none" resource="TEFirst__prior" resourceContentType="image/svg+xml" cssclass="landing-image">
+                  <styles>
+                    <styleitem type="itemsize"/>
+                    <styleitem type="border"/>
+                  </styles>
+                </image>
+              </components>
+            </division>
+          </divisions>
+          <styles>
+            <styleitem type="background" bgtype="none"/>
+          </styles>
+        </grid>
+        <grid uniqueid="sk-c_ck--562">
+          <divisions>
+            <division behavior="flex" minwidth="100px" ratio="1">
+              <components>
+                <richtext multiple="false" uniqueid="sk-c_gJW-573">
+                  <contents>&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;span style="font-size:26px;"&gt;New Opportunity&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;span style="font-size:16px;"&gt;Start Here to create a new opportunity for a new account or an existing account. Track contacts, convert leads and more.&lt;/span&gt;&lt;/p&gt;
+</contents>
+                </richtext>
+              </components>
+            </division>
+            <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+              <components>
+                <richtext multiple="false" uniqueid="sk-c_h4q-578">
+                  <contents>&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;span style="font-size:26px;"&gt;Dashboard&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;span style="font-size: 16px;"&gt;View Key Metrics related to the opporty Management process as well as records that may require your attention.&lt;/span&gt;&lt;/p&gt;
+</contents>
+                </richtext>
+              </components>
+            </division>
+            <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+              <components>
+                <richtext multiple="false" uniqueid="sk-c_hrL-583">
+                  <contents>&lt;p style="text-align: center;"&gt;&lt;strong&gt;&lt;span style="font-size:26px;"&gt;Prioritization&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p style="text-align: center;"&gt;&lt;span style="font-size:16px;"&gt;Have multiple ongoing deals? Prioritize the most the important deals so your Sales Team can react appropriately.&lt;/span&gt;&lt;/p&gt;
+</contents>
+                </richtext>
+              </components>
+            </division>
+          </divisions>
+          <styles>
+            <styleitem type="background" bgtype="none"/>
+          </styles>
+        </grid>
+      </components>
+    </pageregioncontent>
+  </pageregioncontents>
+  <components/>
+  <resources>
+    <labels/>
+    <css>
+      <cssitem location="inline" name="landing-search" cachelocation="false">.landing-search .ui-autocomplete-input{
+    padding: 16px;
+    border-radius:100px;
+    font-size: 16px;
+    background:white;
+    border:1px solid gray;
+}
+.landing-search &gt; .ui-icon-search.nx-field-reference-search{
+    color:gray;
+    font-size:16px;
+    margin-right:16px;
+}</cssitem>
+      <cssitem location="inline" name="landing-image" cachelocation="false">.landing-image.sk-image-wrapper&gt;img{
+    width: 50%;
+    margin:auto;
+}
+</cssitem>
+    </css>
+    <javascript>
+      <jsitem location="inline" name="enterKeyJS" cachelocation="false" url="">(function(skuid){
+	var $ = skuid.$;
+	$(document.body).one('pageload',function(){
+	    document.querySelector('#searchText').addEventListener('keypress',function(e){
+	        var input = $('.ui-autocomplete-input').val();
+	        console.log(input)
+	        var key = e.which || e.keyCode;
+	        
+	        if(key === 13){
+	            window.open('/apex/skuid__ui?page=salescloudsearchresult&amp;name='+input,"_self");
+	        }
+	    })
+	});
+})(skuid);</jsitem>
+      <jsitem location="staticresource" name="customSkuidRuntime" cachelocation="false" url="" namespace="TEFirst" content_type="application/javascript">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+    </javascript>
+  </resources>
+</skuidpage>

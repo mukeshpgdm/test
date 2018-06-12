@@ -1,0 +1,10 @@
+{
+   "uniqueId": "_customPopup",
+   "type": "Desktop",
+   "name": "customPopup",
+   "module": null,
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

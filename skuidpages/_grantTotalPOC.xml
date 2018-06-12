@@ -1,0 +1,112 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+  <models>
+    <model id="UIOnly" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+      <fields>
+        <field id="firstQtr" displaytype="FORMULA" label="firstQtr" ogdisplaytype="TEXT" readonly="true" returntype="TEXT">
+          <formula>IF(MONTH(TODAY())== 11 || MONTH(TODAY())== 12 || MONTH(TODAY())== 1,"Q1"+YEAR(TODAY())+1,
+IF(MONTH(TODAY())&lt; 5,"Q2"+YEAR(TODAY()),
+IF(MONTH(TODAY())&gt; 4 &amp;&amp; MONTH(TODAY())&gt; 8,"Q3"+YEAR(TODAY()),
+"Q4"+YEAR(TODAY()))
+)
+)</formula>
+        </field>
+        <field id="secQtr" displaytype="FORMULA" label="secQtr" ogdisplaytype="TEXT" readonly="true" returntype="TEXT">
+          <formula>IF((MONTH(TODAY())+3)== 11 || (MONTH(TODAY())+3)== 12 || (MONTH(TODAY())+3)== 1,
+	"Q1"+YEAR(TODAY()),
+		IF((MONTH(TODAY())+3)&lt; 5,
+			"Q2"+YEAR(TODAY()),
+				IF((MONTH(TODAY())+3)&gt; 4 &amp;&amp; MONTH(TODAY())&gt; 8,
+				"Q3"+YEAR(TODAY()),
+				"Q4"+YEAR(TODAY()))
+		)
+	)</formula>
+        </field>
+        <field id="thirdQtr" displaytype="FORMULA" label="thirdQtr" ogdisplaytype="TEXT" readonly="true" returntype="TEXT">
+          <formula>IF(MONTH(TODAY()+4)/4&lt;1,"Q3","")</formula>
+        </field>
+        <field id="fourthQtr" displaytype="FORMULA" label="fourthQtr" ogdisplaytype="TEXT" readonly="true" returntype="TEXT">
+          <formula>MONTH(TODAY())+3</formula>
+        </field>
+        <field id="fifthQtr" displaytype="FORMULA" label="fifthQtr" ogdisplaytype="TEXT" readonly="true" returntype="TEXT">
+          <formula>MONTH(TODAY())+4</formula>
+        </field>
+        <field id="sixthQtr" displaytype="FORMULA" label="sixthQtr" ogdisplaytype="TEXT" readonly="true" returntype="TEXT">
+          <formula>MONTH(TODAY())+5</formula>
+        </field>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="requeryModels" behavior="standard">
+              <models>
+                <model>getAccountSummaries</model>
+              </models>
+            </action>
+          </actions>
+          <events>
+            <event>row.created</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+    <model id="getAccountSummaries" query="false" createrowifnonefound="false" datasource="firstAPIs" processonclient="true" type="" verb="GET" endpoint="installedbase-accounts?usrId=21805393" pathtocontent="data" fieldtargetobjects="data">
+      <fields>
+        <field id="accountId"/>
+        <field id="accountName"/>
+        <field id="Q12018"/>
+        <field id="Q12019"/>
+        <field id="Q22018"/>
+        <field id="Q22019"/>
+        <field id="Q32018"/>
+        <field id="Q42018"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="getAccountSummaries" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3Prir6-145">
+      <fields>
+        <field id="accountName" hideable="true" uniqueid="fi-3PrmRa-159"/>
+        <field id="Q12018" hideable="true" uniqueid="fi-3PrmRb-160" valuehalign="" type="">
+          <label>{{$Model.UIOnly.data.0.firstQtr}}</label>
+        </field>
+        <field id="Q12019" hideable="true" uniqueid="fi-3PrmRb-161" valuehalign="" type="">
+          <label>{{$Model.UIOnly.data.0.secQtr}}</label>
+        </field>
+        <field id="Q22018" hideable="true" uniqueid="fi-3PrmRc-162" valuehalign="" type="">
+          <label>{{$Model.UIOnly.data.0.thirdQtr}}</label>
+        </field>
+        <field id="Q32018" hideable="true" uniqueid="fi-3PrmRc-163" valuehalign="" type="">
+          <label>{{$Model.UIOnly.data.0.fourthQtr}}</label>
+        </field>
+        <field id="Q42018" hideable="true" uniqueid="fi-3PrmRc-164" valuehalign="" type="">
+          <label>{{$Model.UIOnly.data.0.fifthQtr}}</label>
+        </field>
+        <field id="Q22019" hideable="true" uniqueid="fi-3PrmRc-165" valuehalign="" type="">
+          <label>{{$Model.UIOnly.data.0.sixthQtr}}</label>
+        </field>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+    </skootable>
+  </components>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

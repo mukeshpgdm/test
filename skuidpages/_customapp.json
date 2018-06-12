@@ -1,0 +1,10 @@
+{
+   "uniqueId": "_customapp",
+   "type": "Desktop",
+   "name": "customapp",
+   "module": null,
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": false,
+   "composerSettings": null
+}

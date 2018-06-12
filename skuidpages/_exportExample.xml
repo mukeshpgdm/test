@@ -1,0 +1,83 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" useviewportmeta="true" showsidebar="true" showheader="true" tabtooverride="Task">
+  <models>
+    <model id="Task" query="true" createrowifnonefound="false" datasource="firstAPIs" processonclient="true" type="" verb="GET" endpoint="api/v1/installedbase-account-assets?usrId=123467&amp;accountId=000&amp;uiTest=d" pathtocontent="data" fieldtargetobjects="data">
+      <fields>
+        <field id="ampId"/>
+        <field id="contractDocType"/>
+        <field id="contractId"/>
+        <field id="customerId"/>
+        <field id="disposition"/>
+        <field id="fulfillmentRoute"/>
+        <field id="leaseContractId"/>
+        <field id="leaseContractStartDate"/>
+        <field id="leaseMaturityDate"/>
+        <field id="opportunityId"/>
+        <field id="productLine"/>
+        <field id="productName"/>
+        <field id="serialNumber"/>
+        <field id="serviceValueGlobal"/>
+        <field id="serviceValueLocal"/>
+        <field id="shipToName"/>
+        <field id="soldToName"/>
+        <field id="valueCurrencyType"/>
+        <field id="warrantyEndDate"/>
+        <field id="warrantyStartDate"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <pagetitle model="Task" uniqueid="sk-3KScRx-83">
+      <maintitle>
+        <template>{{Model.labelPlural}}</template>
+      </maintitle>
+      <subtitle>
+        <template>Home</template>
+      </subtitle>
+      <actions>
+        <action type="multi" label="Export Tasks" uniqueid="sk-3KSfkM-126">
+          <actions>
+            <action type="custom" snippet="exportSnippet"/>
+          </actions>
+        </action>
+        <action type="savecancel" uniqueid="sk-3KScRv-82"/>
+      </actions>
+    </pagetitle>
+  </components>
+  <resources>
+    <labels/>
+    <css/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="exportSnippet" cachelocation="false">var $ = skuid.$;
+                
+                var today = new Date();
+                var model = skuid.model.getModel('Task');
+                
+                var fields = [
+                //use the api names of your fields here
+                    'Subject',
+                    'CreatedDate'    
+                ];
+                
+                var fieldsWithCorrectLabels = $.map(fields, function(v){
+                    var actualField = model.getField(v);
+                     console.log(actualField.id);
+                     
+                     return {
+                        id: actualField.id,
+                        name: actualField.name
+                    };    
+                });
+                
+                model.exportData({
+                    fileName: 'Custom Export File Name '+today+'.csv',
+                    fields: fieldsWithCorrectLabels,
+                    doNotAppendRowIdColumn: true
+                    });</jsitem>
+    </javascript>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

@@ -1,0 +1,213 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false" theme="Modern">
+  <models>
+    <model id="Opportunities" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Opportunity">
+      <fields>
+        <field id="Name"/>
+        <field id="StageName"/>
+        <field id="AccountId"/>
+        <field id="Account.Name"/>
+        <field id="Id"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+    <model id="Account" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Account">
+      <fields>
+        <field id="Name"/>
+        <field id="Industry"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" value="" field="Id" operator="=" mergefield="AccountId" novaluebehavior="deactivate" fieldtargetobjects="Account" state="filterableon" inactive="false" userinfotype="userid" enclosevalueinquotes="true" name="Id"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="NewModel" query="true" createrowifnonefound="false" datasource="kdjsnjk" processonclient="true" type="" verb="POST">
+      <fields>
+        <field id="email" displaytype="EMAIL" label="email" ogdisplaytype="TEXT"/>
+        <field id="name" displaytype="TEXT"/>
+        <field id="company" displaytype="TEXT"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+    <model id="custome" query="true" createrowifnonefound="false" datasource="jjjjjjjjjjjjjjj" processonclient="true" type="" verb="POST">
+      <fields/>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <custom name="sample" uniqueid="sk-uNvTf-160"/>
+    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="Opportunities" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-k0pE_-123">
+      <fields>
+        <field id="AccountId" hideable="true" uniqueid="fi-k0tPV-137"/>
+        <field id="Id" hideable="true" uniqueid="fi-k0tPW-139" valuehalign="" type=""/>
+        <field id="Name" hideable="true" uniqueid="fi-k0tPW-138"/>
+        <field id="StageName" hideable="true" uniqueid="fi-k0tPW-140"/>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+        <action type="multi" label="Run multiple actions" icon="sk-icon-magic">
+          <actions>
+            <action type="setCondition" model="Account" condition="Id" value="{{AccountId}}"/>
+            <action type="toggleSlidingPanel">
+              <panel title="Sliding Panel Contents" uniqueid="sk-k2A7v-195" size="80%" origin="right" closeonpageclick="true" behavior="overlay">
+                <components>
+                  <grid uniqueid="sk-k655c-389">
+                    <divisions>
+                      <division behavior="flex" verticalalign="top" ratio="1" minwidth="100px">
+                        <components>
+                          <richtext multiple="false" uniqueid="sk-k6X8b-423">
+                            <contents>&lt;p&gt;&lt;span style="font-size:24px;"&gt;&lt;u&gt;&lt;strong&gt;Page 1&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/p&gt;
+</contents>
+                          </richtext>
+                          <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="Opportunities" buttonposition="" uniqueid="sk-k2JMF-204" mode="read" layout="">
+                            <columns>
+                              <column width="100%">
+                                <sections>
+                                  <section title="Detail" collapsible="no">
+                                    <fields>
+                                      <field uniqueid="sk-k2NuP-216" id="AccountId" valuehalign="" type="" redirecttype="none" optionsource="" pagesize="5" snippet="">
+                                        <filters/>
+                                        <searchfields/>
+                                      </field>
+                                      <field uniqueid="sk-k2NuQ-217" id="Name"/>
+                                      <field uniqueid="sk-k2NuQ-218" id="Id"/>
+                                      <field uniqueid="sk-k2NuQ-219" id="StageName"/>
+                                    </fields>
+                                  </section>
+                                </sections>
+                              </column>
+                            </columns>
+                          </basicfieldeditor>
+                        </components>
+                      </division>
+                      <division behavior="fit" verticalalign="top">
+                        <components>
+                          <buttonset model="Opportunities" uniqueid="sk-k4xw_-278">
+                            <buttons>
+                              <button type="multi" label="View Account Detail" uniqueid="sk-k4yOj-281">
+                                <actions>
+                                  <action type="requeryModels" behavior="standard">
+                                    <models>
+                                      <model>Account</model>
+                                    </models>
+                                  </action>
+                                  <action type="toggleSlidingPanel">
+                                    <panel title="Sliding Panel Contents" uniqueid="sk-k516k-290" size="80%" origin="right" closeonpageclick="true" behavior="overlay">
+                                      <components>
+                                        <richtext multiple="false" uniqueid="sk-k53ky-296" model="Account">
+                                          <contents>&lt;p&gt;&lt;span style="font-size:24px;"&gt;&lt;u&gt;&lt;strong&gt;Page 2&lt;/strong&gt;&lt;/u&gt;&lt;/span&gt;&lt;/p&gt;
+
+&lt;p&gt;Account Detail&lt;/p&gt;
+</contents>
+                                        </richtext>
+                                        <basicfieldeditor showheader="true" showsavecancel="true" showerrorsinline="true" model="Account" buttonposition="" uniqueid="sk-k7CE6-534" mode="read" layout="">
+                                          <columns>
+                                            <column width="100%">
+                                              <sections>
+                                                <section title="Section A" collapsible="no">
+                                                  <fields>
+                                                    <field uniqueid="sk-k7Ghh-553" id="Name"/>
+                                                    <field uniqueid="sk-k7Ghh-554" id="Industry"/>
+                                                  </fields>
+                                                </section>
+                                              </sections>
+                                            </column>
+                                          </columns>
+                                          <renderconditions logictype="and"/>
+                                        </basicfieldeditor>
+                                      </components>
+                                    </panel>
+                                  </action>
+                                </actions>
+                                <hotkeys/>
+                                <renderconditions logictype="and"/>
+                                <enableconditions/>
+                              </button>
+                            </buttons>
+                            <renderconditions logictype="and"/>
+                          </buttonset>
+                        </components>
+                      </division>
+                    </divisions>
+                    <styles>
+                      <styleitem type="background" bgtype="none"/>
+                    </styles>
+                  </grid>
+                </components>
+                <interactions/>
+              </panel>
+            </action>
+          </actions>
+        </action>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+    </skootable>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inline" name="newInlineJS" cachelocation="false" url="">(function(skuid) {
+var $ = skuid.$;	
+skuid.builder.core.registerBuilder(new skuid.builder.core.Builder({
+  id : 'sample',
+  name : 'sample',
+  icon : 'ui-silk-tux',
+  description : 'Lets you add child components to it',
+  hideFromComponentsList : false,
+  componentRenderer : function(component) {
+    component.setTitle(component.builder.name);
+    component.body.css('padding','8px').css('word-wrap','break-word');
+    // Add in a child components acceptor area.
+    
+    // If we do NOT have a child 'components' area,
+    // we MUST add it in.
+    if (!component.state.children('components').length) {
+         component.state.append(
+             skuid.utils.makeXMLDoc('&lt;components/&gt;')
+          );
+    }
+    
+    var acceptor = new skuid.builder.ComponentAcceptor(
+      // The stored XML state
+      component.state.children('components')
+    );
+    component.body.append(acceptor.element);
+    
+  },
+  propertiesRenderer : function(propertiesObj,component) {
+    propertiesObj.setTitle('Sample Component Properties');
+    
+    var propsList = [
+      {
+        id : 'model',
+        type : 'model',
+        label : 'Model to Use in this Component',
+        required : true
+      }
+    ];    
+   propertiesObj.body.append(
+      skuid.builder.buildPropsEditor(component.state,propsList)
+   );
+  },
+  defaultStateGenerator : function() {
+    return skuid.utils.makeXMLDoc('&lt;sample/&gt;');
+  }
+  
+}));
+})(skuid);</jsitem>
+    </javascript>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

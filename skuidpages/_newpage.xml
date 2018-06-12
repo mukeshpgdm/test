@@ -1,0 +1,167 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" showheader="true" tabtooverride="Opportunity" theme="Cool Grey">
+  <models>
+    <model id="Opportunity" limit="100" query="true" createrowifnonefound="false" sobject="Opportunity">
+      <fields>
+        <field id="Name"/>
+        <field id="CreatedDate"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <pagetitle model="Opportunity" uniqueid="sk-3pg-yK-72">
+      <maintitle>
+        <template>{{Model.labelPlural}}</template>
+      </maintitle>
+      <subtitle>
+        <template>Home</template>
+      </subtitle>
+      <actions>
+        <action type="savecancel"/>
+      </actions>
+    </pagetitle>
+    <grid uniqueid="sk-3ph3Uk-85">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+          <components>
+            <wrapper uniqueid="sk-3ph6ah-90">
+              <components>
+                <template multiple="true" uniqueid="sk-3ph8ni-97" allowhtml="true" model="Opportunity">
+                  <contents>&lt;div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"&gt;&lt;/div&gt;</contents>
+                </template>
+              </components>
+              <styles>
+                <styleitem type="background" bgtype="none"/>
+                <styleitem type="border"/>
+                <styleitem type="size" width="custom" height="custom">
+                  <styles>
+                    <styleitem property="min-width" value="310px"/>
+                    <styleitem property="min-height" value="400px"/>
+                  </styles>
+                </styleitem>
+              </styles>
+            </wrapper>
+          </components>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+    </grid>
+    <skootable showconditions="true" showsavecancel="false" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" createrecords="true" model="Opportunity" mode="read" uniqueid="sk-3pg-yK-73">
+      <fields>
+        <field id="Name" allowordering="true"/>
+        <field id="CreatedDate" allowordering="true"/>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+    </skootable>
+  </components>
+  <resources>
+    <labels/>
+    <css/>
+    <javascript>
+      <jsitem location="external" name="Highcharts" cachelocation="false" url="https://code.highcharts.com/highcharts.js">var params = arguments[0],
+$ = skuid.$;
+</jsitem>
+      <jsitem location="external" name="Treemap" cachelocation="false" url="https://code.highcharts.com/modules/treemap.js">var params = arguments[0],
+$ = skuid.$;
+</jsitem>
+      <jsitem location="inline" name="pageLoad" cachelocation="false" url="">(function(skuid){
+var $ = skuid.$;
+$(document.body).one('pageload',function(){
+    	$('#container').highcharts({
+            series: [{
+                type: "treemap",
+                layoutAlgorithm: 'stripes',
+                alternateStartingDirection: true,
+                levels: [{
+                    level: 1,
+                    layoutAlgorithm: 'sliceAndDice',
+                    dataLabels: {
+                        enabled: true,
+                        align: 'left',
+                        verticalAlign: 'top',
+                        style: {
+                            fontSize: '15px',
+                            fontWeight: 'bold'
+                        }
+                    }
+                }],
+                data: [{
+                    id: 'A',
+                    name: 'Apples',
+                    color: "#EC2500"
+                }, {
+                    id: 'B',
+                    name: 'Bananas',
+                    color: "#ECE100"
+                }, {
+                    id: 'O',
+                    name: 'Oranges',
+                    color: '#EC9800'
+                }, {
+                    name: 'Anne',
+                    parent: 'A',
+                    value: 5
+                }, {
+                    name: 'Rick',
+                    parent: 'A',
+                    value: 3
+                }, {
+                    name: 'Peter',
+                    parent: 'A',
+                    value: 4
+                }, {
+                    name: 'Anne',
+                    parent: 'B',
+                    value: 4
+                }, {
+                    name: 'Rick',
+                    parent: 'B',
+                    value: 10
+                }, {
+                    name: 'Peter',
+                    parent: 'B',
+                    value: 1
+                }, {
+                    name: 'Anne',
+                    parent: 'O',
+                    value: 1
+                }, {
+                    name: 'Rick',
+                    parent: 'O',
+                    value: 3
+                }, {
+                    name: 'Peter',
+                    parent: 'O',
+                    value: 3
+                }, {
+                    name: 'Susanne',
+                    parent: 'Kiwi',
+                    value: 2,
+                    color: '#9EDE00'
+                }]
+            }],
+            title: {
+                text: 'Fruit consumption'
+            }
+        });
+});
+})(skuid);</jsitem>
+    </javascript>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

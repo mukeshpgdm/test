@@ -1,0 +1,10 @@
+{
+   "uniqueId": "_child1",
+   "type": "Desktop",
+   "name": "child1",
+   "module": null,
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": "_Master",
+   "isMasterPage": false,
+   "composerSettings": null
+}

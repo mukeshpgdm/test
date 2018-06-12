@@ -1,0 +1,10 @@
+{
+   "uniqueId": "_Master",
+   "type": "Desktop",
+   "name": "Master",
+   "module": null,
+   "maxAutoSaves": 25,
+   "masterPageUniqueId": null,
+   "isMasterPage": true,
+   "composerSettings": "{\"skuid.model(NewModel2)\":{\"usrId\":\"sdfsdf\"}}"
+}

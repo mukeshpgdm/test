@@ -1,0 +1,21 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+  <models>
+    <model id="Post" query="true" createrowifnonefound="true" datasource="Reqres" processonclient="true" type="" verb="POST" endpoint="/api/users" async="true" label="Post" labelplural="Post" unloadwarningifunsavedchanges="false">
+      <fields>
+        <field id="name" displaytype="TEXT" label="name" defaultvaluetype="fieldvalue"/>
+        <field id="job" displaytype="TEXT" label="job"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components/>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

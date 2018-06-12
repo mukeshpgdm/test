@@ -1,0 +1,160 @@
+<skuidpage unsavedchangeswarning="yes" useviewportmeta="true" theme="salesCloud">
+  <models>
+    <model id="Accounts" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Account">
+      <fields>
+        <field id="Name"/>
+        <field id="Id"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="name" field="Name" operator="contains" state="" enclosevalueinquotes="true" novaluebehavior="deactivate" inactive="false"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="Contacts" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Contact">
+      <fields>
+        <field id="Name"/>
+        <field id="Id"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="name" field="Name" operator="contains" enclosevalueinquotes="true" novaluebehavior="deactivate" state="" inactive="false"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="Opportunities" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Opportunity">
+      <fields>
+        <field id="Name"/>
+        <field id="Id"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="name" field="Name" operator="contains" enclosevalueinquotes="true" novaluebehavior="deactivate" state="" inactive="false"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="Campaigns" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Campaign">
+      <fields>
+        <field id="Name"/>
+        <field id="Id"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="name" field="Name" operator="contains" enclosevalueinquotes="true" novaluebehavior="deactivate" state="" inactive="false"/>
+      </conditions>
+      <actions/>
+    </model>
+  </models>
+  <pageregioncontents>
+    <pageregioncontent regionid="sk-coTUr-469" uniqueid="sk-hxtbV-94">
+      <components>
+        <grid uniqueid="sk-hxzDO-123">
+          <divisions>
+            <division behavior="flex" minwidth="100px" ratio="1" verticalalign="top">
+              <components>
+                <wrapper uniqueid="sk-hxvJ_-113">
+                  <components>
+                    <richtext multiple="false" uniqueid="sk-hy0dg-133">
+                      <contents>&lt;p&gt;&lt;strong&gt;Accounts&lt;/strong&gt;&lt;/p&gt;
+</contents>
+                    </richtext>
+                    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="false" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-hyQO8-237" model="Accounts">
+                      <fields>
+                        <field id="Id" hideable="true" uniqueid="fi-hzy8U-493"/>
+                        <field id="Name" hideable="true" uniqueid="fi-hzy8U-494"/>
+                      </fields>
+                      <rowactions>
+                        <action type="edit"/>
+                        <action type="delete"/>
+                      </rowactions>
+                      <massactions usefirstitemasdefault="true">
+                        <action type="massupdate"/>
+                        <action type="massdelete"/>
+                      </massactions>
+                      <views>
+                        <view type="standard"/>
+                      </views>
+                    </skootable>
+                    <richtext multiple="false" uniqueid="sk-hy6vO-149">
+                      <contents>&lt;p&gt;&lt;strong&gt;Contacts&lt;/strong&gt;&lt;/p&gt;
+</contents>
+                    </richtext>
+                    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="false" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-hyTxS-252" model="Contacts">
+                      <fields>
+                        <field id="Id" hideable="true" uniqueid="fi-hz-Ec-510"/>
+                        <field id="Name" hideable="true" uniqueid="fi-hz-Ec-511"/>
+                      </fields>
+                      <rowactions>
+                        <action type="edit"/>
+                        <action type="delete"/>
+                      </rowactions>
+                      <massactions usefirstitemasdefault="true">
+                        <action type="massupdate"/>
+                        <action type="massdelete"/>
+                      </massactions>
+                      <views>
+                        <view type="standard"/>
+                      </views>
+                    </skootable>
+                    <richtext multiple="false" uniqueid="sk-hy8Ld-161">
+                      <contents>&lt;p&gt;&lt;strong&gt;Opportunities&lt;/strong&gt;&lt;/p&gt;
+</contents>
+                    </richtext>
+                    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="false" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-hyNPc-222" model="Opportunities">
+                      <fields>
+                        <field id="Name" hideable="true" uniqueid="fi-h_3vC-527"/>
+                        <field id="Id" hideable="true" uniqueid="fi-h_3vC-528"/>
+                      </fields>
+                      <rowactions>
+                        <action type="edit"/>
+                        <action type="delete"/>
+                      </rowactions>
+                      <massactions usefirstitemasdefault="true">
+                        <action type="massupdate"/>
+                        <action type="massdelete"/>
+                      </massactions>
+                      <views>
+                        <view type="standard"/>
+                      </views>
+                    </skootable>
+                    <richtext multiple="false" uniqueid="sk-hy7XJ-155">
+                      <contents>&lt;p&gt;&lt;strong&gt;Campaign&lt;/strong&gt;&lt;/p&gt;
+</contents>
+                    </richtext>
+                    <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-hyMmq-207" model="Campaigns">
+                      <fields>
+                        <field id="Id" hideable="true" uniqueid="fi-h_8ZN-544"/>
+                        <field id="Name" hideable="true" uniqueid="fi-h_8ZN-545"/>
+                      </fields>
+                      <rowactions>
+                        <action type="edit"/>
+                        <action type="delete"/>
+                      </rowactions>
+                      <massactions usefirstitemasdefault="true">
+                        <action type="massupdate"/>
+                        <action type="massdelete"/>
+                      </massactions>
+                      <views>
+                        <view type="standard"/>
+                      </views>
+                    </skootable>
+                  </components>
+                  <styles>
+                    <styleitem type="background"/>
+                    <styleitem type="border"/>
+                    <styleitem type="size"/>
+                  </styles>
+                </wrapper>
+              </components>
+            </division>
+          </divisions>
+          <styles>
+            <styleitem type="background" bgtype="none"/>
+          </styles>
+        </grid>
+      </components>
+    </pageregioncontent>
+  </pageregioncontents>
+  <components/>
+  <resources>
+    <labels/>
+    <css/>
+    <javascript/>
+  </resources>
+</skuidpage>

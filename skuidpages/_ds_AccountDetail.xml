@@ -1,0 +1,44 @@
+<skuidpage unsavedchangeswarning="yes" useviewportmeta="true">
+  <models>
+    <model id="Account" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Account">
+      <fields>
+        <field id="Name"/>
+        <field id="AccountNumber"/>
+        <field id="Phone"/>
+        <field id="Id"/>
+      </fields>
+      <conditions>
+        <condition type="param" value="Id" field="Id" operator="=" enclosevalueinquotes="true" novaluebehavior="" state=""/>
+      </conditions>
+      <actions/>
+    </model>
+  </models>
+  <pageregioncontents>
+    <pageregioncontent regionid="sk-7kVpx-101" uniqueid="sk-7km9g-87">
+      <components>
+        <basicfieldeditor showheader="true" showsavecancel="true" showerrorsinline="true" model="Account" buttonposition="" uniqueid="sk-7lV1n-167" mode="read">
+          <columns>
+            <column width="100%">
+              <sections>
+                <section title="Section A" collapsible="no" showheader="false">
+                  <fields>
+                    <field uniqueid="sk-7lcbg-185" id="Id"/>
+                    <field uniqueid="sk-7lcbg-186" id="Name"/>
+                    <field uniqueid="sk-7lcbg-187" id="AccountNumber"/>
+                    <field uniqueid="sk-7lcbh-188" id="Phone"/>
+                  </fields>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </basicfieldeditor>
+      </components>
+    </pageregioncontent>
+  </pageregioncontents>
+  <components/>
+  <resources>
+    <labels/>
+    <css/>
+    <javascript/>
+  </resources>
+</skuidpage>

@@ -1,0 +1,141 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" showheader="true" tabtooverride="Contact">
+  <models>
+    <model id="Contacts" limit="100" query="true" createrowifnonefound="false" sobject="Contact" type="" orderby="LastName, FirstName" datasource="salesforce">
+      <fields>
+        <field id="FirstName"/>
+        <field id="LastName"/>
+        <field id="CreatedDate"/>
+        <field id="Birthdate"/>
+        <field id="MailingCity"/>
+        <field id="MailingCountry"/>
+        <field id="MailingState"/>
+        <field id="MailingStreet"/>
+        <field id="MailingPostalCode"/>
+        <field id="Email"/>
+        <field id="HomePhone"/>
+        <field id="Phone"/>
+        <field id="AccountId"/>
+        <field id="Account.Name"/>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="custom" snippet="newSnippet"/>
+          </actions>
+          <events/>
+        </action>
+      </actions>
+    </model>
+    <model id="SelectedContact" limit="" query="false" createrowifnonefound="false" sobject="Contact" adapter="" type="">
+      <fields>
+        <field id="FirstName"/>
+        <field id="LastName"/>
+        <field id="CreatedDate"/>
+        <field id="Birthdate"/>
+        <field id="MailingCity"/>
+        <field id="MailingCountry"/>
+        <field id="MailingState"/>
+        <field id="MailingStreet"/>
+        <field id="MailingPostalCode"/>
+        <field id="Email"/>
+        <field id="HomePhone"/>
+        <field id="Phone"/>
+        <field id="AccountId"/>
+        <field id="Account.Name"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="5" createrecords="true" model="Contacts" buttonposition="" mode="read" uniqueid="sk-w6zxW-152" cssclass="">
+      <fields>
+        <field id="FirstName" uniqueid="sk-32z8T-78"/>
+        <field id="LastName" uniqueid="sk-32z8U-80"/>
+        <field id="AccountId" uniqueid="sk-32z8V-82"/>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+        <action type="multi" label="Show details" icon="sk-icon-contact">
+          <actions>
+            <action type="emptyModelData">
+              <models>
+                <model>SelectedContact</model>
+              </models>
+            </action>
+            <action type="adoptRows" sourcemodel="Contacts" targetmodel="SelectedContact"/>
+          </actions>
+        </action>
+        <action type="custom" label="Run multiple actions" icon="sk-icon-magic" snippet=""/>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+      <searchfields/>
+      <renderconditions logictype="and"/>
+    </skootable>
+    <pagetitle model="SelectedContact" uniqueid="sk-w7XQb-267">
+      <subtitle>
+        <template>{{Model.label}}</template>
+      </subtitle>
+      <actions>
+        <action type="savecancel" uniqueid="sk-32z9C-92"/>
+      </actions>
+      <maintitle>{{FirstName}} {{LastName}} - {{AccountId}}</maintitle>
+      <renderconditions logictype="and">
+        <rendercondition type="fieldvalue" enclosevalueinquotes="true" fieldmodel="SelectedContact" sourcetype="modelproperty" nosourcerowbehavior="deactivate" sourceproperty="hasRows"/>
+      </renderconditions>
+    </pagetitle>
+    <basicfieldeditor showheader="true" showsavecancel="false" showerrorsinline="true" model="SelectedContact" buttonposition="" uniqueid="sk-w6_oC-164" mode="read">
+      <columns>
+        <column width="50%">
+          <sections>
+            <section title="Mailing Address" collapsible="no">
+              <fields>
+                <field id="MailingStreet" uniqueid="sk-32z9L-98"/>
+                <field id="MailingCity" uniqueid="sk-32z9N-100"/>
+                <field id="MailingState" uniqueid="sk-32z9T-102"/>
+                <field id="MailingPostalCode" uniqueid="sk-32z9U-104"/>
+                <field id="MailingCountry" uniqueid="sk-32z9V-106"/>
+              </fields>
+            </section>
+          </sections>
+        </column>
+        <column width="50%">
+          <sections>
+            <section title="Contact" collapsible="no">
+              <fields>
+                <field id="Phone" uniqueid="sk-32z9d-110"/>
+                <field id="HomePhone" valuehalign="" type="" uniqueid="sk-32z9k-112"/>
+                <field id="Email" uniqueid="sk-32z9m-114"/>
+                <field id="Birthdate" showhelp="true" valuehalign="" type="" uniqueid="sk-32z9n-116"/>
+              </fields>
+            </section>
+          </sections>
+        </column>
+      </columns>
+    </basicfieldeditor>
+  </components>
+  <resources>
+    <labels/>
+    <css/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="newSnippet" cachelocation="false">var $ = skuid.$;
+$('.nx-skootable tr').on('click', 'td', function(event) {
+    alert('ddd');
+    if($(event.currentTarget).find('.sk-icon-magic').length &lt;= 0) {
+        $(event.currentTarget.parentElement).find('.sk-icon-magic').click();
+    }
+});</jsitem>
+    </javascript>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

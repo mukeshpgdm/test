@@ -1,0 +1,159 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false" theme="salesCloud">
+  <models>
+    <model id="currentUser" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="User">
+      <fields>
+        <field id="Name"/>
+        <field id="Id"/>
+        <field id="SmallPhotoUrl"/>
+      </fields>
+      <conditions>
+        <condition type="userinfo" value="" field="Id" operator="=" enclosevalueinquotes="true" userinfotype="userid"/>
+      </conditions>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <wrapper uniqueid="sk-coQIn-460">
+      <components>
+        <pageregion uniqueid="sk-coTUr-469">
+          <styles>
+            <styleitem type="background" bgtype="none"/>
+          </styles>
+        </pageregion>
+      </components>
+      <styles>
+        <styleitem type="background"/>
+        <styleitem type="border"/>
+        <styleitem type="size"/>
+      </styles>
+    </wrapper>
+  </components>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+  <pageregioncontents>
+    <pageregioncontent uniqueid="__header">
+      <components>
+        <skuidheader sticky="true">
+          <components>
+            <grid uniqueid="sk-cTHYW-174" columngutter="16px">
+              <divisions>
+                <division behavior="fit" verticalalign="center">
+                  <components>
+                    <image source="staticresource" uniqueid="sk-cTY35-195" datasource="salesforce" behavior="link" resource="TEFirst__salesCloudLogo" resourceContentType="image/png">
+                      <styles>
+                        <styleitem type="itemsize" width="custom">
+                          <styles>
+                            <styleitem property="width" value="200px"/>
+                          </styles>
+                        </styleitem>
+                        <styleitem type="border"/>
+                      </styles>
+                      <renderconditions logictype="and"/>
+                      <interactions>
+                        <interaction type="tap">
+                          <action type="redirect" window="self" url="/apex/skuid__ui?page=salesCloudChild"/>
+                        </interaction>
+                      </interactions>
+                    </image>
+                  </components>
+                </division>
+                <division behavior="flex" verticalalign="center" ratio="1" minwidth="100px">
+                  <components>
+                    <navigation uniqueid="sk-ckw2t-141">
+                      <navigationitems>
+                        <navigationitem label="Accounts" uniqueid="sk-ckw2s-140">
+                          <actions>
+                            <action type="redirect" window="self"/>
+                          </actions>
+                        </navigationitem>
+                        <navigationitem label="Contacts" uniqueid="sk-ckykL-149">
+                          <actions>
+                            <action type="redirect" window="self"/>
+                          </actions>
+                        </navigationitem>
+                        <navigationitem uniqueid="sk-ckz6F-152" label="Opportunities">
+                          <actions>
+                            <action type="redirect" window="self"/>
+                          </actions>
+                        </navigationitem>
+                        <navigationitem label="Campaign" uniqueid="sk-ckzFe-155">
+                          <actions>
+                            <action type="redirect" window="self"/>
+                          </actions>
+                        </navigationitem>
+                      </navigationitems>
+                      <styles/>
+                      <renderconditions logictype="and"/>
+                    </navigation>
+                  </components>
+                </division>
+                <division behavior="fit" verticalalign="center">
+                  <components>
+                    <navigation uniqueid="sk-clcKS-177" type="dropdown" source="sfusermenu" label="{{$Model.currentUser.data.0.Name}}">
+                      <navigationitems/>
+                    </navigation>
+                  </components>
+                </division>
+                <division behavior="fit" verticalalign="center">
+                  <components>
+                    <image source="url" uniqueid="sk-cm2-w-222" datasource="salesforce" behavior="none" model="currentUser" url="{{$Model.currentUser.data.0.SmallPhotoUrl}}">
+                      <styles>
+                        <styleitem type="itemsize" height="custom" width="custom">
+                          <styles>
+                            <styleitem property="width" value="30px"/>
+                            <styleitem property="height" value="30px"/>
+                          </styles>
+                        </styleitem>
+                        <styleitem type="border" borders="all" padding="none" margin="none">
+                          <styles>
+                            <styleitem property="border" value="1px solid grey"/>
+                            <styleitem property="box-sizing" value="border-box"/>
+                          </styles>
+                        </styleitem>
+                        <styleitem property="border-radius" value="40px"/>
+                        <styleitem property="overflow" value="hidden"/>
+                      </styles>
+                    </image>
+                  </components>
+                </division>
+              </divisions>
+              <styles>
+                <styleitem type="background" bgtype="none"/>
+                <styleitem property="padding" value="5px"/>
+              </styles>
+            </grid>
+          </components>
+          <styles>
+            <styleitem type="background" bgtype="color">
+              <styles>
+                <styleitem property="background-color" value="#1f497d"/>
+              </styles>
+            </styleitem>
+            <styleitem type="border" padding="none">
+              <styles>
+                <styleitem property="box-sizing" value="border-box"/>
+              </styles>
+            </styleitem>
+          </styles>
+        </skuidheader>
+      </components>
+    </pageregioncontent>
+    <pageregioncontent uniqueid="__footer">
+      <components>
+        <skuidfooter>
+          <components/>
+          <styles>
+            <styleitem type="background" bgtype="none"/>
+            <styleitem type="border"/>
+          </styles>
+        </skuidfooter>
+      </components>
+    </pageregioncontent>
+  </pageregioncontents>
+</skuidpage>

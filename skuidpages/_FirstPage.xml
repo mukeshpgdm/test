@@ -1,0 +1,116 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" useviewportmeta="true" showsidebar="true" showheader="true" tabtooverride="Account">
+  <models>
+    <model id="Account" limit="1" query="true" createrowifnonefound="false" datasourcetype="salesforce" datasource="salesforce" sobject="Account">
+      <fields>
+        <field id="Name"/>
+        <field id="CreatedDate"/>
+      </fields>
+      <conditions>
+        <condition type="param" enclosevalueinquotes="true" operator="=" field="Id" value="id"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="OData" query="true" createrowifnonefound="false" datasource="Sample Test" processonclient="true" deferfieldrendering="true" sobject="ODataWebV3.Northwind.Model.Customers" label="Customer" labelplural="Customers" namefield="" limit="10">
+      <fields>
+        <field id="CompanyName" overridemetadata="true" ogdisplaytype="STRING" displaytype="TEXT" helptext="dgsdfsd" length="255" placeholder="ds"/>
+        <field id="ContactName"/>
+        <field id="ContactTitle"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <pagetitle model="Account" uniqueid="sk-3cZzkp-85">
+      <maintitle>
+        <template>{{Name}}</template>
+      </maintitle>
+      <subtitle>
+        <template>{{Model.label}}</template>
+      </subtitle>
+      <actions>
+        <action type="delete" uniqueid="sk-3cZzkV-78"/>
+        <action type="clone" uniqueid="sk-3cZzkY-80"/>
+        <action type="share" uniqueid="sk-3cZzkj-82"/>
+        <action type="savecancel" window="self" uniqueid="sk-3cZzko-84"/>
+      </actions>
+    </pagetitle>
+    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="OData" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3jAGfN-163">
+      <fields>
+        <field id="CompanyName" hideable="true" uniqueid="fi-3jCaOK-130"/>
+        <field id="ContactName" hideable="true" uniqueid="fi-3jCaOK-131"/>
+        <field id="ContactTitle" hideable="true" uniqueid="fi-3jCaOL-132"/>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+        <view type="custom" label="ds" viewsnippet="ds"/>
+      </views>
+    </skootable>
+    <navigation uniqueid="sk-3cagXI-125">
+      <navigationitems>
+        <navigationitem label="Home" uniqueid="sk-3cahTP-131" icon="sk-icon-config">
+          <actions>
+            <action type="redirect" window="self"/>
+          </actions>
+        </navigationitem>
+      </navigationitems>
+    </navigation>
+    <skuidvis__chartset uniqueid="sk-3j9hO1-86">
+      <charts>
+        <skuidvis__chart model="Account" maintitle="{{Model.labelPlural}}" type="line" uniqueid="sk-3caoNE-138">
+          <dataaxes>
+            <axis id="axis1"/>
+          </dataaxes>
+          <categoryaxes>
+            <axis id="categories" categorytype="field"/>
+          </categoryaxes>
+          <serieslist/>
+          <colors/>
+          <legend layout="horizontal" halign="center" valign="bottom"/>
+        </skuidvis__chart>
+        <skuidvis__geochart model="Account" maintitle="{{Model.labelPlural}}" maptype="world-highres" height="600px" uniqueid="sk-3carQf-141" mapgroup="global">
+          <colors/>
+          <legend/>
+        </skuidvis__geochart>
+      </charts>
+    </skuidvis__chartset>
+    <basicfieldeditor showsavecancel="false" showheader="true" model="Account" mode="read" uniqueid="sk-3cZzm5-96">
+      <columns>
+        <column width="50%">
+          <sections>
+            <section title="Basics">
+              <fields>
+                <field id="Name" uniqueid="sk-3cZzlY-91" valuehalign="" type=""/>
+              </fields>
+            </section>
+          </sections>
+        </column>
+        <column width="50%">
+          <sections>
+            <section title="System Info">
+              <fields>
+                <field id="CreatedDate" uniqueid="sk-3cZzlo-95"/>
+              </fields>
+            </section>
+          </sections>
+        </column>
+      </columns>
+    </basicfieldeditor>
+  </components>
+  <resources>
+    <labels/>
+    <css/>
+    <javascript/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

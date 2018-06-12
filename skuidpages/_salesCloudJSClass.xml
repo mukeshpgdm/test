@@ -1,0 +1,129 @@
+<skuidpage unsavedchangeswarning="yes">
+  <models>
+    <model id="Opportunities" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Opportunity">
+      <fields>
+        <field id="Name"/>
+        <field id="Id"/>
+        <field id="StageName"/>
+        <field id="AccountId"/>
+        <field id="Account.Name"/>
+        <field id="Boolean" uionly="true" displaytype="BOOLEAN" label="Boolean" ogdisplaytype="TEXT"/>
+        <field id="CreatedDate"/>
+        <field id="CloseDate"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <pageregioncontents>
+    <pageregioncontent regionid="sk-coTUr-469" uniqueid="sk-d8eCp-94">
+      <components>
+        <grid uniqueid="sk-d9ME1-190">
+          <divisions>
+            <division behavior="flex" minwidth="100px" ratio="1">
+              <components>
+                <wrapper uniqueid="sk-d9Q3r-199">
+                  <components>
+                    <pagetitle model="Opportunities" uniqueid="sk-d98m2-160">
+                      <maintitle>Opportunities</maintitle>
+                      <actions/>
+                      <renderconditions logictype="and"/>
+                    </pagetitle>
+                    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="Opportunities" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-d95f1-146">
+                      <fields>
+                        <field id="AccountId" hideable="true" uniqueid="fi-d9E-q-170"/>
+                        <field id="Name" hideable="true" uniqueid="fi-d9E-r-171"/>
+                        <field id="Id" hideable="true" uniqueid="fi-d9E-s-172"/>
+                        <field id="StageName" hideable="true" uniqueid="fi-d9E-s-173"/>
+                        <field id="Boolean" hideable="true" uniqueid="fi-hNaJF-167" type="" valuehalign="" snippet="newSnippet"/>
+                        <field id="Boolean" hideable="true" uniqueid="fi-hNasM-176" type="CUSTOM" valuehalign="" snippet="yesNoRenderer"/>
+                        <field id="CreatedDate" hideable="true" uniqueid="fi-hYf0r-1241" valuehalign="" type="" snippet="">
+                          <label>CreatedDate</label>
+                        </field>
+                        <field id="CloseDate" hideable="true" uniqueid="fi-hYf0s-1242" valuehalign="" type="CUSTOM" snippet="dateReneder"/>
+                      </fields>
+                      <rowactions>
+                        <action type="edit"/>
+                        <action type="delete"/>
+                      </rowactions>
+                      <massactions usefirstitemasdefault="true">
+                        <action type="massupdate"/>
+                        <action type="massdelete"/>
+                      </massactions>
+                      <views>
+                        <view type="standard"/>
+                      </views>
+                    </skootable>
+                  </components>
+                  <styles>
+                    <styleitem type="background"/>
+                    <styleitem type="border" margin="all" padding="all">
+                      <styles>
+                        <styleitem property="padding" value="15px"/>
+                        <styleitem property="margin" value="0px"/>
+                        <styleitem property="box-sizing" value="border-box"/>
+                      </styles>
+                    </styleitem>
+                    <styleitem type="size"/>
+                  </styles>
+                </wrapper>
+              </components>
+            </division>
+          </divisions>
+          <styles>
+            <styleitem type="background" bgtype="none"/>
+          </styles>
+        </grid>
+      </components>
+    </pageregioncontent>
+  </pageregioncontents>
+  <components/>
+  <resources>
+    <labels/>
+    <css>
+      <cssitem location="inline" name="newcss" cachelocation="false">.red{
+    background-color:red;
+}
+.yellow{
+    background-color:yellow;
+}</cssitem>
+    </css>
+    <javascript>
+      <jsitem location="inlinesnippet" name="yesNoRenderer" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var field = arguments[0], //returned by skuid
+    element = field.element[0],
+    value = arguments[1],
+    $ = skuid.$
+    console.log(value)
+    if(value){
+        value = "Yes";
+    } else {
+        value = "No";
+    }
+    
+    skuid.ui.fieldRenderers["TEXT"][field.mode](field,value);
+</jsitem>
+      <jsitem location="inlinesnippet" name="dateReneder" cachelocation="false">var field = arguments[0],
+    value = arguments[1],
+	$ = skuid.$;
+
+skuid.ui.fieldRenderers[field.metadata.displaytype][field.mode](field,value);
+console.log(field.row)
+var createdDate = new Date(value);
+var thisMonth = new Date().getMonth();
+var isLastMonth = (createdDate.getMonth() === (thisMonth -1));
+
+$(field.element).removeClass('red');
+$(field.element).removeClass('yellow');
+console.log(isLastMonth,thisMonth,createdDate,createdDate.getMonth())
+//if(field.mode == 'read' || field.mode === 'readonly'){
+    if(isLastMonth){
+        $(field.element).addClass('yellow');
+    }else if (createdDate.getMonth() &lt; (thisMonth -2)){
+        $(field.element).addClass('red');
+    }
+//}</jsitem>
+    </javascript>
+  </resources>
+</skuidpage>

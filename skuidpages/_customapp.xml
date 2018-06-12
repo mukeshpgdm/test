@@ -1,0 +1,87 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+  <models>
+    <model id="Account" limit="1" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Account">
+      <fields>
+        <field id="BillingLatitude"/>
+        <field id="BillingLongitude"/>
+        <field id="Name"/>
+        <field id="TEFirst__newDirection__Latitude__s"/>
+        <field id="TEFirst__newDirection__Longitude__s"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+    <model id="Opportunity" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Opportunity">
+      <fields>
+        <field id="Name"/>
+        <field id="StageName"/>
+        <field id="Amount"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <pagetitle model="Account" uniqueid="sk-iGMas-132">
+      <maintitle>
+        <template>{{Name}}</template>
+      </maintitle>
+      <subtitle>
+        <template>{{Model.label}}</template>
+      </subtitle>
+      <actions/>
+    </pagetitle>
+    <mycustomcomponents__customwrapper uniqueid="sk-iW3Z0-98" model="Account">
+      <components>
+        <skuidvis__chart model="Account" maintitle="{{Model.labelPlural}}" type="line" uniqueid="sk-jyDe1-116">
+          <dataaxes>
+            <axis id="axis1"/>
+          </dataaxes>
+          <categoryaxes>
+            <axis id="categories" categorytype="field"/>
+          </categoryaxes>
+          <serieslist/>
+          <colors/>
+          <legend layout="horizontal" halign="center" valign="bottom"/>
+        </skuidvis__chart>
+        <template multiple="false" uniqueid="sk-iWyDy-173" model="Opportunity">
+          <contents>{{Name}}</contents>
+        </template>
+        <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="Opportunity" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-iXWfl-195">
+          <fields>
+            <field id="Amount" hideable="true" uniqueid="fi-iXaIV-211"/>
+            <field id="Name" hideable="true" uniqueid="fi-iXaIV-212"/>
+            <field id="StageName" hideable="true" uniqueid="fi-iXaIV-213"/>
+          </fields>
+          <rowactions>
+            <action type="edit"/>
+            <action type="delete"/>
+          </rowactions>
+          <massactions usefirstitemasdefault="true">
+            <action type="massupdate"/>
+            <action type="massdelete"/>
+          </massactions>
+          <views>
+            <view type="standard"/>
+          </views>
+        </skootable>
+      </components>
+    </mycustomcomponents__customwrapper>
+    <mycustomcomponents__awesomemap pincolor="green" uniqueid="sk-iFwiN-90" model="Account" latitudefield="TEFirst__newDirection__Latitude__s" longitudefield="TEFirst__newDirection__Longitude__s"/>
+    <custom name="navBar" uniqueid="sk-iKODx-97">
+      <renderconditions logictype="and"/>
+    </custom>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="staticresource" name="runtimeJS" cachelocation="false" url="" namespace="TEFirst" content_type="application/javascript">var params = arguments[0],
+	$ = skuid.$;
+</jsitem>
+    </javascript>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

@@ -1,0 +1,107 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+  <models>
+    <model id="Oppty" limit="50" query="true" createrowifnonefound="false" datasource="salesforce" type="aggregate" sobject="Opportunity" orderby="SUM(Amount) ASC">
+      <fields>
+        <field id="Amount" name="Amount" function="SUM"/>
+      </fields>
+      <conditions/>
+      <actions/>
+      <groupby method="simple">
+        <field id="AccountId" name="accountId"/>
+        <field id="Account.Name" name="accountName"/>
+        <field id="CloseDate" name="closeDate"/>
+      </groupby>
+    </model>
+  </models>
+  <components>
+    <grid uniqueid="sk-2pqYm6-117">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1">
+          <components/>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+    </grid>
+    <panelset type="standard" uniqueid="sk-2ppmOF-101" scroll="">
+      <panels>
+        <panel type="left" width="225px">
+          <components/>
+        </panel>
+        <panel>
+          <components/>
+        </panel>
+      </panels>
+    </panelset>
+    <skuidvis__chart model="Oppty" maintitle="" type="bar" uniqueid="sk-2Ay3tw-277" stacking="true" height="600px" export="off">
+      <dataaxes>
+        <axis id="axis1"/>
+      </dataaxes>
+      <categoryaxes>
+        <axis id="categories" categorytype="field" field="Amount" flip="true"/>
+      </categoryaxes>
+      <serieslist>
+        <series valuefield="Amount" splittype="field" splitfield="accountName" dataAxisId="axis1"/>
+      </serieslist>
+      <colors>
+        <value>#f69988</value>
+        <value>#f06292</value>
+        <value>#ab47bc</value>
+        <value>#673ab7</value>
+        <value>#dd191d</value>
+        <value>#c2185b</value>
+        <value>#6a1b9a</value>
+        <value>#b39ddb</value>
+        <value>#f36c60</value>
+        <value>#ec407a</value>
+        <value>#9c27b0</value>
+        <value>#5e35b1</value>
+        <value>#d01716</value>
+        <value>#ad1457</value>
+      </colors>
+      <legend layout="off" halign="center" valign="bottom" showlabels="false"/>
+      <renderconditions logictype="and"/>
+    </skuidvis__chart>
+    <skootable showconditions="true" showsavecancel="false" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="false" model="Oppty" buttonposition="" mode="readonly" allowcolumnreordering="true" responsive="true" uniqueid="sk-2Ip5dT-95">
+      <fields>
+        <field id="Amount" name="sumAmount" hideable="true" uniqueid="fi-2Ip8st-106"/>
+        <field id="AccountId" name="accountId" hideable="true" uniqueid="fi-2Ip8st-107"/>
+        <field id="Account.Name" name="accountName" hideable="true" uniqueid="fi-2Ip8st-108"/>
+        <field id="CloseDate" name="closeDate" hideable="true" uniqueid="fi-2Ip8st-109"/>
+      </fields>
+      <rowactions/>
+      <massactions usefirstitemasdefault="true"/>
+      <views>
+        <view type="standard"/>
+      </views>
+    </skootable>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="newSnippet" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+$.extend(true, chartObj, {
+     plotOptions: {
+        series: {
+            dataLabels: {
+                enabled: true,
+                align: 'left',
+                color: '#000',
+                x:0
+                
+            },
+            pointPadding: 0.1,
+            groupPadding: 0,
+            pointWidth: 10
+        }
+    }
+})</jsitem>
+    </javascript>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

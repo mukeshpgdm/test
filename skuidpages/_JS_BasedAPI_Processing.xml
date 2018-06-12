@@ -1,0 +1,192 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false">
+  <models>
+    <model id="RestAPICall" query="false" createrowifnonefound="false" datasource="regres_PK" processonclient="true" type="" verb="GET" endpoint="/users?page=1&amp;per_page=10">
+      <fields>
+        <field id="page"/>
+        <field id="per_page"/>
+        <field id="total_pages"/>
+        <field id="total"/>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="custom" sourcemodel="RestAPICall" targetmodel="Case" affectedrows="context" datasource="CountryNameCodes" snippet="newSnippet"/>
+          </actions>
+          <events>
+            <event>models.loaded</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+    <model id="UI" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+      <fields/>
+      <conditions/>
+      <actions>
+        <action>
+          <actions/>
+          <events>
+            <event>row.created</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+    <model id="RestAPICall_Data" query="false" createrowifnonefound="false" datasource="regres_PK" processonclient="true" type="" verb="GET" endpoint="/users?page=2" pathtocontent="data" fieldtargetobjects="data">
+      <fields>
+        <field id="avatar" displaytype="TEXT" label="Avatar"/>
+        <field id="first_name" displaytype="TEXT" label="FirstName"/>
+        <field id="id" displaytype="TEXT" label="Id"/>
+        <field id="last_name" displaytype="TEXT" label="Last Name"/>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="publish" sourcemodel="RestAPICall" targetmodel="Case" affectedrows="context" datasource="CountryNameCodes"/>
+          </actions>
+          <events>
+            <event>models.loaded</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+    <model id="RestAPICall1" query="false" createrowifnonefound="false" datasource="regres_PK" processonclient="true" type="" verb="GET" endpoint="/users?page=1">
+      <fields>
+        <field id="page"/>
+        <field id="per_page"/>
+        <field id="total_pages"/>
+        <field id="total"/>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="custom" sourcemodel="RestAPICall" targetmodel="Case" affectedrows="context" datasource="CountryNameCodes" snippet="newSnippet"/>
+          </actions>
+          <events>
+            <event>models.loaded</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+    <model id="RestAPICall1_Data" query="false" createrowifnonefound="false" datasource="regres_PK" processonclient="true" type="" verb="GET" endpoint="/users?page=2" pathtocontent="data" fieldtargetobjects="data">
+      <fields>
+        <field id="avatar" displaytype="TEXT" label="Avatar"/>
+        <field id="first_name" displaytype="TEXT" label="FirstName"/>
+        <field id="id" displaytype="TEXT" label="Id"/>
+        <field id="last_name" displaytype="TEXT" label="Last Name"/>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="publish" sourcemodel="RestAPICall" targetmodel="Case" affectedrows="context" datasource="CountryNameCodes"/>
+          </actions>
+          <events>
+            <event>models.loaded</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+  </models>
+  <components>
+    <pagetitle model="RestAPICall" uniqueid="sk-3vdjPt-186">
+      <maintitle>{{total}}</maintitle>
+      <subtitle>
+        <template>{{Model.label}}</template>
+      </subtitle>
+      <actions/>
+    </pagetitle>
+    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="RestAPICall_Data" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3Xqoo6-1125">
+      <fields>
+        <field id="avatar" hideable="true" uniqueid="fi-3XqsTH-1141"/>
+        <field id="first_name" hideable="true" uniqueid="fi-3XqsTI-1142"/>
+        <field id="id" hideable="true" uniqueid="fi-3XqsTI-1143"/>
+        <field id="last_name" hideable="true" uniqueid="fi-3XqsTJ-1144"/>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+    </skootable>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="newSnippet" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var sourceModel = skuid.model.getModel(params.component.id)
+var destinationModel =skuid.model.getModel(params.component.id+'_Data')
+
+var row = sourceModel.getFirstRow();
+var nestedArray = [];
+
+$.each(row.data, function(i,nestedItem) {
+	nestedArray.push(nestedItem);
+});
+
+destinationModel.abandonAllRows();
+destinationModel.adoptRows(nestedArray);
+</jsitem>
+      <jsitem location="inline" name="PageLoad" cachelocation="false" url="">(function(skuid) {
+    var $ = skuid.$;
+    $(document.body).one('pageload', function() {
+        // 		var myModelAccounts = skuid.$M('dsm_Accounts_Load');
+        // 		var myModelContacts = skuid.$M('dsm_Contacts_Load');
+        // 		var myModelContracts = skuid.$M('dsm_ext_Contracts_Load');
+
+
+        var allModels = skuid.model.getModelsByName();
+        var j = 0;
+        Object.keys(allModels).forEach(function(key) {
+            console.log(key, j)
+            j += 80
+            window.setTimeout(function() {
+                var myModel = skuid.$M(key);
+                $.when(myModel.updateData(myModel)).then(function(d) {
+                    // SUCCESS function
+                    console.log('models loaded and ready to go!', d);
+                });
+            }, j)
+
+        });
+
+
+
+
+        /*
+		window.setTimeout(function(){
+		    $.when(myModelAccounts.updateData(myModelAccounts)).then(function(d){
+          // SUCCESS function
+              console.log('models loaded and ready to go!',d);
+            });
+		},50)
+		window.setTimeout(function(){
+		   $.when(myModelContacts.updateData(myModelContacts)).then(function(d){
+          // SUCCESS function
+          console.log('models loaded and ready to go! 2',d);
+        });
+		},100)
+		window.setTimeout(function(){
+		    $.when(myModelContracts.updateData(myModelContracts)).then(function(d){
+          // SUCCESS function
+          console.log('models loaded and ready to go! 2',d);
+        });
+		},150)
+        */
+    });
+})(skuid);</jsitem>
+    </javascript>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

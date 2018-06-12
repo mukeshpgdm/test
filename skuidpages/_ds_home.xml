@@ -1,0 +1,37 @@
+<skuidpage unsavedchangeswarning="yes" useviewportmeta="true">
+  <models/>
+  <pageregioncontents>
+    <pageregioncontent regionid="sk-7kVpx-101" uniqueid="sk-7tAXO-98">
+      <components>
+        <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-7tU3p-121" model="Accounts">
+          <fields>
+            <field id="Id" hideable="true" uniqueid="fi-7tam7-140"/>
+            <field id="Name" hideable="true" uniqueid="fi-7tam8-141"/>
+            <field id="AccountNumber" hideable="true" uniqueid="fi-7tam8-142"/>
+            <field type="COMBO" hideable="true" uniqueid="fi-7tc77-153" valuehalign="" allowhtml="true">
+              <label>Template Field</label>
+              <template>&lt;a href="?page=ds_AccountDetail&amp;id={{{Id}}}"&gt;{{{Name}}}&lt;/a&gt;</template>
+            </field>
+          </fields>
+          <rowactions>
+            <action type="edit"/>
+            <action type="delete"/>
+          </rowactions>
+          <massactions usefirstitemasdefault="true">
+            <action type="massupdate"/>
+            <action type="massdelete"/>
+          </massactions>
+          <views>
+            <view type="standard"/>
+          </views>
+        </skootable>
+      </components>
+    </pageregioncontent>
+  </pageregioncontents>
+  <components/>
+  <resources>
+    <labels/>
+    <css/>
+    <javascript/>
+  </resources>
+</skuidpage>

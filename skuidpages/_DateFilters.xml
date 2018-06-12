@@ -1,0 +1,134 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+  <models>
+    <model id="systemTable" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true" unloadwarningifunsavedchanges="false">
+      <fields>
+        <field id="Name" displaytype="TEXT" label="Name" required="true"/>
+        <field id="Value" displaytype="TEXT" label="Value"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+    <model id="Opportunities" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Opportunity">
+      <fields>
+        <field id="Amount"/>
+        <field id="CloseDate"/>
+        <field id="NewField" uionly="true" displaytype="TEXT"/>
+        <field id="StageName"/>
+      </fields>
+      <conditions>
+        <condition type="blank" value="null" field="CloseDate" operator="=" mergefield="Id" novaluebehavior="deactivate" enclosevalueinquotes="false" state="filterableoff" inactive="true" name="CloseDate"/>
+        <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="StageName" state="filterableoff" inactive="true" name="StageName"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="dateFilters" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="TEFirst__Skuid_DateFilter__c">
+      <fields>
+        <field id="Name"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+    <model id="outlookmessage" query="true" createrowifnonefound="false" datasource="outlooksnew" processonclient="true" x-entityname="Message">
+      <fields>
+        <field id="Id"/>
+        <field id="Subject"/>
+      </fields>
+      <conditions>
+        <condition value="" sourcetype="param" sourceparam="$filter" name="$filter" label="$Filter" type="fieldvalue" state="filterablerequired" required="true"/>
+        <condition value="200" sourcetype="param" sourceparam="$top" name="$top" label="Record Limit" state="filterablerequired" type="fieldvalue" required="true"/>
+        <condition value="" sourcetype="param" sourceparam="$orderby" name="$orderby" label="$OrderBy" type="fieldvalue" state="filterablerequired" required="true"/>
+        <condition value="Inbox" sourcetype="param" sourceparam="mailfolder" name="mailfolder" label="Mail Folder ID" type="fieldvalue" state="filterablerequired" required="true"/>
+      </conditions>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="outlookmessage" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-16dSFZ-250">
+      <fields>
+        <field id="Id" hideable="true" uniqueid="fi-16f258-196" valuehalign="" type=""/>
+        <field id="Subject" hideable="true" uniqueid="fi-16f258-197"/>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+    </skootable>
+    <mycustomcomponents__customwrapper uniqueid="sk-16IXjE-311" model="systemTable">
+      <components>
+        <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="Opportunities" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-15-VpE-150">
+          <fields>
+            <field id="Amount" hideable="true" uniqueid="fi-16IaQU-323"/>
+            <field id="CloseDate" hideable="true" uniqueid="fi-16IaQV-324"/>
+            <field id="StageName" hideable="true" uniqueid="fi-16InlT-358"/>
+          </fields>
+          <rowactions>
+            <action type="edit"/>
+            <action type="delete"/>
+          </rowactions>
+          <massactions usefirstitemasdefault="true">
+            <action type="massupdate"/>
+            <action type="massdelete"/>
+          </massactions>
+          <views>
+            <view type="standard"/>
+          </views>
+          <filters>
+            <filter type="select" filteroffoptionlabel="All" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="manual" labelmode="manual" condition="StageName" label="Stage Name">
+              <sources>
+                <source type="custom" effectsbehavior="justdefault" model="dateFilters" snippet="dateFilters"/>
+              </sources>
+            </filter>
+          </filters>
+        </skootable>
+      </components>
+    </mycustomcomponents__customwrapper>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="dateFilters" cachelocation="false" url="">//(function(skuid){
+var $ = skuid.$;
+
+//$(document.body).one('pageload',function(){
+//	alert('page loaded');  // alert to confirm the page is loaded    
+//$('wrapperId').hide(); //enter the class or id of the particular html element which you wish to hide. 
+/**    var sysModel = skuid.model.getModel('systemTable');
+		var currentQtr = sysModel.createRow();
+		var today = new Date(); 
+		
+		sysModel.updateRow(currentQtr,{Name:today})
+		console.log(sysModel)
+		sysModel.save();
+	**/
+var filterItems = [];
+var d = new Date();
+var qEnd = new Date(d);
+console.log(d,qEnd,qEnd.getMonth(),qEnd.getMonth() % 3)
+qEnd.setMonth(qEnd.getMonth() + 3 - qEnd.getMonth() % 3, 0);
+console.log(Math.floor((qEnd - d) / 8.64e7));
+filterItems.push({
+    label: 'Closed Won',
+    value: 'Closed Won'
+});
+filterItems.push({
+    label: 'Value Proposition',
+    value: 'Value Proposition'
+});
+console.log(filterItems);
+return filterItems;
+//}); 
+//})(skuid);</jsitem>
+    </javascript>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

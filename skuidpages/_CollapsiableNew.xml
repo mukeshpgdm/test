@@ -1,0 +1,334 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true" theme="IceAgeFunctionalityTest">
+  <models>
+    <model id="BlankModel" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true" unloadwarningifunsavedchanges="false">
+      <fields>
+        <field id="showBlue" displaytype="BOOLEAN" ogdisplaytype="TEXT" required="false" label="show blue" defaultvaluetype="fieldvalue" defaultValue="true"/>
+        <field id="showGreen" displaytype="BOOLEAN" label="showGreen" ogdisplaytype="TEXT" defaultvaluetype="fieldvalue" defaultValue="true"/>
+        <field id="showOrange" displaytype="BOOLEAN" label="showOrange" ogdisplaytype="TEXT" defaultvaluetype="fieldvalue" defaultValue="true"/>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="save" sourcemodel="BlankModel" targetmodel="BlankModel" affectedrows="context">
+              <models>
+                <model>BlankModel</model>
+              </models>
+            </action>
+          </actions>
+          <events>
+            <event>row.updated</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+  </models>
+  <components>
+    <panelset type="standard" uniqueid="sk-2XMJ05-434" scroll="">
+      <panels>
+        <panel type="left" width="225px">
+          <components>
+            <wrapper uniqueid="sk-2XMKY6-440">
+              <components>
+                <navigation uniqueid="sk-2XXoLG-579" type="dropdown" useicon="true">
+                  <navigationitems>
+                    <navigationitem label="Show All">
+                      <actions>
+                        <action type="updateRow" window="self" fieldmodel="BlankModel" affectedrows="context" field="showBlue" enclosevalueinquotes="true" value="true"/>
+                        <action type="updateRow" fieldmodel="BlankModel" affectedrows="context" field="showGreen" enclosevalueinquotes="true" value="true"/>
+                        <action type="updateRow" fieldmodel="BlankModel" affectedrows="context" field="showOrange" enclosevalueinquotes="true" value="true"/>
+                      </actions>
+                    </navigationitem>
+                    <navigationitem label="Hide All">
+                      <actions>
+                        <action type="updateRow" window="self" fieldmodel="BlankModel" affectedrows="context" field="showBlue" enclosevalueinquotes="true" value="false"/>
+                        <action type="updateRow" window="self" fieldmodel="BlankModel" affectedrows="context" field="showGreen" enclosevalueinquotes="true" value="false"/>
+                        <action type="updateRow" window="self" fieldmodel="BlankModel" affectedrows="context" field="showOrange" enclosevalueinquotes="true" value="false"/>
+                      </actions>
+                    </navigationitem>
+                  </navigationitems>
+                  <styles/>
+                  <renderconditions logictype="and"/>
+                </navigation>
+              </components>
+              <styles>
+                <styleitem type="background"/>
+                <styleitem type="border"/>
+                <styleitem type="size"/>
+              </styles>
+            </wrapper>
+          </components>
+        </panel>
+        <panel>
+          <components>
+            <wrapper uniqueid="sk-2XWTmx-398">
+              <components>
+                <wrapper uniqueid="sk-2XWav_-432">
+                  <components>
+                    <grid uniqueid="sk-2XWgvg-450">
+                      <divisions>
+                        <division behavior="flex" minwidth="100px" ratio="1">
+                          <components/>
+                        </division>
+                        <division behavior="fit" verticalalign="top">
+                          <components>
+                            <navigation uniqueid="sk-2XWjvy-457" icon="" overflowtomenu="false">
+                              <navigationitems>
+                                <navigationitem icon="fa-chevron-up">
+                                  <actions>
+                                    <action type="updateRow" window="self" fieldmodel="BlankModel" affectedrows="context" field="showBlue" enclosevalueinquotes="true" value="true"/>
+                                  </actions>
+                                  <renderconditions logictype="and">
+                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BlankModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="showBlue" value="false"/>
+                                  </renderconditions>
+                                </navigationitem>
+                                <navigationitem icon="fa-chevron-down">
+                                  <actions>
+                                    <action type="updateRow" window="self" fieldmodel="BlankModel" affectedrows="context" field="showBlue" enclosevalueinquotes="true" value="false"/>
+                                  </actions>
+                                  <renderconditions logictype="and">
+                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BlankModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="showBlue" value="true"/>
+                                  </renderconditions>
+                                </navigationitem>
+                              </navigationitems>
+                            </navigation>
+                          </components>
+                        </division>
+                      </divisions>
+                      <styles>
+                        <styleitem type="background" bgtype="none"/>
+                      </styles>
+                    </grid>
+                  </components>
+                  <styles>
+                    <styleitem type="background" bgtype="color">
+                      <styles>
+                        <styleitem property="background-color" value="#d8d8d8"/>
+                      </styles>
+                    </styleitem>
+                    <styleitem type="border"/>
+                    <styleitem type="size" height="custom">
+                      <styles>
+                        <styleitem property="min-height" value="30px"/>
+                      </styles>
+                    </styleitem>
+                  </styles>
+                </wrapper>
+                <wrapper uniqueid="sk-2XW9r2-363">
+                  <components/>
+                  <styles>
+                    <styleitem type="background" bgtype="color">
+                      <styles>
+                        <styleitem property="background-color" value="#dbeef3"/>
+                      </styles>
+                    </styleitem>
+                    <styleitem type="border"/>
+                    <styleitem type="size" height="custom">
+                      <styles>
+                        <styleitem property="min-height" value="80px"/>
+                      </styles>
+                    </styleitem>
+                  </styles>
+                  <renderconditions logictype="and">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BlankModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="showBlue" value="true"/>
+                  </renderconditions>
+                </wrapper>
+                <wrapper uniqueid="sk-2XTybb-139">
+                  <components>
+                    <grid uniqueid="sk-2XVBOw-288">
+                      <divisions>
+                        <division behavior="flex" minwidth="100px" ratio="1">
+                          <components>
+                            <pagetitle uniqueid="sk-2XT_GB-148" model="BlankModel">
+                              <maintitle>Wrapper name</maintitle>
+                              <actions/>
+                            </pagetitle>
+                          </components>
+                        </division>
+                        <division behavior="fit" verticalalign="top">
+                          <components>
+                            <navigation uniqueid="sk-2XVEuA-299" icon="" overflowtomenu="false">
+                              <navigationitems>
+                                <navigationitem icon="fa-chevron-up">
+                                  <actions>
+                                    <action type="updateRow" window="self" fieldmodel="BlankModel" affectedrows="context" field="showGreen" enclosevalueinquotes="true" value="true"/>
+                                  </actions>
+                                  <renderconditions logictype="and">
+                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BlankModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="showGreen" value="false"/>
+                                  </renderconditions>
+                                </navigationitem>
+                                <navigationitem icon="fa-chevron-down">
+                                  <actions>
+                                    <action type="updateRow" window="self" fieldmodel="BlankModel" affectedrows="context" field="showGreen" enclosevalueinquotes="true" value="false"/>
+                                  </actions>
+                                  <renderconditions logictype="and">
+                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BlankModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="showGreen" value="true"/>
+                                  </renderconditions>
+                                </navigationitem>
+                              </navigationitems>
+                            </navigation>
+                          </components>
+                        </division>
+                      </divisions>
+                      <styles>
+                        <styleitem type="background" bgtype="none"/>
+                      </styles>
+                    </grid>
+                  </components>
+                  <styles>
+                    <styleitem type="background" bgtype="color">
+                      <styles>
+                        <styleitem property="background-color" value="#d8d8d8"/>
+                      </styles>
+                    </styleitem>
+                    <styleitem type="border" padding="none" margin="top,">
+                      <styles>
+                        <styleitem property="margin-top" value="20px"/>
+                        <styleitem property="box-sizing" value="border-box"/>
+                      </styles>
+                    </styleitem>
+                    <styleitem type="size"/>
+                  </styles>
+                </wrapper>
+                <wrapper uniqueid="sk-2XMLfq-454" cssclass="">
+                  <components/>
+                  <styles>
+                    <styleitem type="background" bgtype="color">
+                      <styles>
+                        <styleitem property="background-color" value="#ebf1dd"/>
+                      </styles>
+                    </styleitem>
+                    <styleitem type="border"/>
+                    <styleitem type="size" height="custom">
+                      <styles>
+                        <styleitem property="min-height" value="800px"/>
+                      </styles>
+                    </styleitem>
+                  </styles>
+                  <renderconditions logictype="and">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BlankModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="showGreen" value="true"/>
+                  </renderconditions>
+                </wrapper>
+                <wrapper uniqueid="sk-2XTybb-139">
+                  <components>
+                    <grid uniqueid="sk-2XVBOw-288">
+                      <divisions>
+                        <division behavior="flex" minwidth="100px" ratio="1">
+                          <components>
+                            <pagetitle uniqueid="sk-2XT_GB-148" model="BlankModel">
+                              <maintitle>Wrapper name</maintitle>
+                              <actions/>
+                            </pagetitle>
+                          </components>
+                        </division>
+                        <division behavior="fit" verticalalign="top">
+                          <components>
+                            <navigation uniqueid="sk-2XVEuA-299" icon="" overflowtomenu="false" cssclass="floatLeft">
+                              <navigationitems>
+                                <navigationitem icon="fa-chevron-up">
+                                  <actions>
+                                    <action type="updateRow" window="self" fieldmodel="BlankModel" affectedrows="context" field="showOrange" enclosevalueinquotes="false" value="true"/>
+                                  </actions>
+                                  <renderconditions logictype="and">
+                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BlankModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="showOrange" value="false"/>
+                                  </renderconditions>
+                                </navigationitem>
+                                <navigationitem icon="fa-chevron-down">
+                                  <actions>
+                                    <action type="updateRow" window="self" fieldmodel="BlankModel" affectedrows="context" field="showOrange" enclosevalueinquotes="false" value="false"/>
+                                  </actions>
+                                  <renderconditions logictype="and">
+                                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BlankModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="showOrange" value="true"/>
+                                  </renderconditions>
+                                </navigationitem>
+                              </navigationitems>
+                              <styles/>
+                            </navigation>
+                          </components>
+                        </division>
+                      </divisions>
+                      <styles>
+                        <styleitem type="background" bgtype="none"/>
+                      </styles>
+                    </grid>
+                  </components>
+                  <styles>
+                    <styleitem type="background" bgtype="color">
+                      <styles>
+                        <styleitem property="background-color" value="#d8d8d8"/>
+                      </styles>
+                    </styleitem>
+                    <styleitem type="border" padding="none" margin="top,">
+                      <styles>
+                        <styleitem property="margin-top" value="20px"/>
+                        <styleitem property="box-sizing" value="border-box"/>
+                      </styles>
+                    </styleitem>
+                    <styleitem type="size"/>
+                  </styles>
+                </wrapper>
+                <wrapper uniqueid="sk-2XMLD_-447" cssclass="">
+                  <components/>
+                  <styles>
+                    <styleitem type="background" bgtype="color">
+                      <styles>
+                        <styleitem property="background-color" value="#fdeada"/>
+                      </styles>
+                    </styleitem>
+                    <styleitem type="border"/>
+                    <styleitem type="size" height="custom">
+                      <styles>
+                        <styleitem property="min-height" value="80px"/>
+                      </styles>
+                    </styleitem>
+                  </styles>
+                  <renderconditions logictype="and">
+                    <rendercondition type="fieldvalue" operator="=" enclosevalueinquotes="false" fieldmodel="BlankModel" sourcetype="fieldvalue" nosourcerowbehavior="deactivate" field="showOrange" value="true"/>
+                  </renderconditions>
+                </wrapper>
+              </components>
+              <styles>
+                <styleitem type="background"/>
+                <styleitem type="border" padding="all">
+                  <styles>
+                    <styleitem property="padding" value="20px"/>
+                    <styleitem property="box-sizing" value="border-box"/>
+                  </styles>
+                </styleitem>
+                <styleitem type="size"/>
+              </styles>
+            </wrapper>
+          </components>
+        </panel>
+      </panels>
+    </panelset>
+  </components>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+  <interactions/>
+  <pageregioncontents>
+    <pageregioncontent uniqueid="__header">
+      <components>
+        <skuidheader sticky="true">
+          <components>
+            <navigation uniqueid="sk-2XMB0u-420">
+              <navigationitems>
+                <navigationitem label="In header">
+                  <actions>
+                    <action type="redirect" window="self"/>
+                  </actions>
+                </navigationitem>
+              </navigationitems>
+            </navigation>
+          </components>
+        </skuidheader>
+      </components>
+    </pageregioncontent>
+  </pageregioncontents>
+</skuidpage>

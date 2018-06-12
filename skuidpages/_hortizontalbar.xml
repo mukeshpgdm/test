@@ -1,0 +1,184 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false">
+  <models>
+    <model id="Quarterly_Pipeline_ByStage" limit="" query="true" createrowifnonefound="false" datasource="salesforce" type="aggregate" sobject="Opportunity" processonclient="false">
+      <fields>
+        <field id="Amount" name="sumAmount" function="SUM"/>
+      </fields>
+      <conditions/>
+      <actions/>
+      <groupby method="simple">
+        <field id="StageName" name="stageName"/>
+        <field id="CloseDate" name="cqCloseDate" function="CALENDAR_QUARTER"/>
+        <field id="CloseDate" name="cyCloseDate" function="CALENDAR_YEAR"/>
+      </groupby>
+    </model>
+    <model id="Quarterly_Total" limit="" query="true" createrowifnonefound="false" datasource="salesforce" type="aggregate" sobject="Opportunity" processonclient="false">
+      <fields>
+        <field id="Amount" name="sumAmount" function="SUM"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" value="Closed Won" enclosevalueinquotes="true" field="StageName"/>
+      </conditions>
+      <actions/>
+      <groupby method="simple">
+        <field id="StageName" name="stageName"/>
+        <field id="CloseDate" name="cqCloseDate" function="CALENDAR_QUARTER"/>
+        <field id="CloseDate" name="cyCloseDate" function="CALENDAR_YEAR"/>
+      </groupby>
+    </model>
+    <model id="Opportunity" limit="" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Opportunity">
+      <fields>
+        <field id="StageName"/>
+        <field id="Amount"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+    <model id="ProgressBar" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+      <fields>
+        <field id="Category" displaytype="TEXT" label="Category"/>
+        <field id="Value" displaytype="TEXT" label="Value"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <grid uniqueid="sk-3jtz6K-725">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1" verticalalign="center">
+          <components>
+            <skuidvis__chart model="ProgressBar" maintitle="" type="bar" uniqueid="sk-3kBpmC-115" rendersnippet="chartProgressBar" stacking="true" export="off" cssclass="newcss" height="120px">
+              <dataaxes>
+                <axis id="axis1"/>
+              </dataaxes>
+              <categoryaxes>
+                <axis id="categories" categorytype="template" field="Category" title="" template=" "/>
+              </categoryaxes>
+              <serieslist>
+                <series valuefield="Value" splittype="field" splitfield="Category"/>
+              </serieslist>
+              <colors>
+                <value>#EEEEEE</value>
+                <value>#2AD2C9</value>
+              </colors>
+              <legend layout="off" halign="center" valign="bottom" showlabels="false"/>
+              <renderconditions logictype="and"/>
+            </skuidvis__chart>
+          </components>
+        </division>
+        <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+          <components>
+            <image source="url" uniqueid="sk-3kaSwx-848" datasource="Ui-Only" behavior="none" model="ProgressBar" url="http://www.iconsdb.com/icons/preview/orange/trophy-xxl.png" cssclass="image-goal">
+              <styles>
+                <styleitem type="itemsize" width="custom">
+                  <styles>
+                    <styleitem property="width" value="40px"/>
+                  </styles>
+                </styleitem>
+                <styleitem type="border"/>
+              </styles>
+            </image>
+          </components>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+    </grid>
+    <grid uniqueid="sk-3kbA-L-881">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1">
+          <components>
+            <skuidvis__chart model="Quarterly_Pipeline_ByStage" maintitle="" type="bar" uniqueid="sk-3h3Vi--111" stacking="true" cssclass="newcss" height="120px" export="off">
+              <dataaxes>
+                <axis id="axis1"/>
+              </dataaxes>
+              <categoryaxes>
+                <axis id="categories" categorytype="template" field="" template="{{{cyCloseDate}}} Q{{{cqCloseDate}}}"/>
+              </categoryaxes>
+              <serieslist>
+                <series splittype="field" valuefield="sumAmount" splitfield="stageName"/>
+              </serieslist>
+              <colors/>
+              <legend layout="off" halign="center" valign="bottom"/>
+              <renderconditions logictype="and"/>
+            </skuidvis__chart>
+            <skuidvis__geochart model="Opportunity" maintitle="{{Model.labelPlural}}" maptype="world-highres" height="600px" uniqueid="sk-9zfCE-127" mapgroup="global">
+              <colors/>
+              <legend/>
+              <serieslist>
+                <series joinBy="hc-key" valueField="Amount" countryfield="StageName" modelId="Opportunity" aggFunction="sum"/>
+              </serieslist>
+              <buckets/>
+            </skuidvis__geochart>
+          </components>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+    </grid>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="chartProgressBar" cachelocation="false">var chartObj = arguments[0],
+
+$ = skuid.$;
+console.log('Progress Bar', chartObj.tooltip)
+//chartObj.tooltip.enabled = false;
+chartObj.series[0].data[0].name = "Pipeline";
+chartObj.series[0].data[0].y = 80;
+chartObj.series[0].id = "Pipeline"
+chartObj.series[0].name = "Pipeline";
+b = {
+    name: 'YTD(SUM)',
+    y: 120
+};
+var UserDataEntry = {};
+chartObj.series.push(UserDataEntry);
+chartObj.series[1].id = "YTD(SUM)"
+chartObj.series[1].name = "YTD(SUM)";
+chartObj.series[1].data = [];
+chartObj.series[1].data.push(b);
+console.log('Progress Bar2', chartObj)
+
+/*
+chartObj.plotOptions.bar.dataLabels= {
+    enabled: true,
+    align: 'right',
+    x: 100,
+    format: '&lt;br&gt;{point.name}&lt;/br&gt;: {point.y:,.0f}',
+        
+        };
+        */</jsitem>
+      <jsitem location="inlinesnippet" name="sample" cachelocation="false">var chartObj = arguments[0],
+
+	$ = skuid.$;
+console.log('Progress Bar exits',chartObj)</jsitem>
+    </javascript>
+    <css>
+      <cssitem location="inline" name="newcss" cachelocation="false">.highcharts-grid-line{
+    display: none;
+}
+.highcharts-xaxis {
+    display: none;
+}
+
+.highcharts-yaxis-labels, .highcharts-yaxis{
+    display: none;
+}</cssitem>
+      <cssitem location="inline" name="image" cachelocation="false">.sk-image-wrapper
+    {    margin-top: 22px;
+    margin-left: -77px;
+    z-index: 99999;
+    position: relative;
+    padding-left:5px;
+}</cssitem>
+    </css>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

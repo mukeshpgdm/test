@@ -1,0 +1,56 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" useviewportmeta="true" showsidebar="true" showheader="true" tabtooverride="Account">
+  <models>
+    <model id="Account" limit="1" query="true" createrowifnonefound="false" datasourcetype="salesforce" datasource="salesforce" sobject="Account">
+      <fields>
+        <field id="Name"/>
+        <field id="CreatedDate"/>
+      </fields>
+      <conditions>
+        <condition type="param" enclosevalueinquotes="true" operator="=" field="Id" value="id"/>
+      </conditions>
+    </model>
+  </models>
+  <components>
+    <pagetitle model="Account">
+      <maintitle>
+        <template>{{Name}}</template>
+      </maintitle>
+      <subtitle>
+        <template>{{Model.label}}</template>
+      </subtitle>
+      <actions>
+        <action type="delete"/>
+        <action type="clone"/>
+        <action type="share"/>
+        <action type="savecancel" window="self"/>
+      </actions>
+    </pagetitle>
+    <basicfieldeditor showsavecancel="false" showheader="true" model="Account" mode="read">
+      <columns>
+        <column width="50%">
+          <sections>
+            <section title="Basics">
+              <fields>
+                <field id="Name"/>
+              </fields>
+            </section>
+          </sections>
+        </column>
+        <column width="50%">
+          <sections>
+            <section title="System Info">
+              <fields>
+                <field id="CreatedDate"/>
+              </fields>
+            </section>
+          </sections>
+        </column>
+      </columns>
+    </basicfieldeditor>
+  </components>
+  <resources>
+    <labels/>
+    <css/>
+    <javascript/>
+  </resources>
+</skuidpage>

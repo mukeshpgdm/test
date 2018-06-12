@@ -1,0 +1,157 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false">
+  <models>
+    <model id="Case" limit="" query="true" createrowifnonefound="false" datasource="salesforce" type="aggregate" sobject="Case">
+      <fields>
+        <field id="Id" name="countId" function="COUNT"/>
+      </fields>
+      <conditions/>
+      <actions/>
+      <groupby method="simple">
+        <field id="Origin" name="origin"/>
+      </groupby>
+    </model>
+    <model id="RestAPICall" query="false" createrowifnonefound="false" datasource="regres_PK" processonclient="true" type="" verb="GET" endpoint="/users?page=2">
+      <fields/>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="custom" sourcemodel="RestAPICall" targetmodel="Case" affectedrows="context" datasource="CountryNameCodes" snippet="newSnippet"/>
+          </actions>
+          <events>
+            <event>models.loaded</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+    <model id="UI" query="true" createrowifnonefound="true" datasource="Ui-Only" processonclient="true">
+      <fields/>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="requeryModel" model="RestAPICall" behavior="standard"/>
+          </actions>
+          <events>
+            <event>row.created</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+    <model id="RestAPICallActual" query="false" createrowifnonefound="false" datasource="regres_PK" processonclient="true" type="" verb="GET" endpoint="/users?page=2" pathtocontent="data" fieldtargetobjects="data">
+      <fields>
+        <field id="avatar" displaytype="TEXT" label="Avatar"/>
+        <field id="first_name" displaytype="TEXT" label="FirstName"/>
+        <field id="id" displaytype="TEXT" label="Id"/>
+        <field id="last_name" displaytype="TEXT" label="Last Name"/>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="publish" sourcemodel="RestAPICall" targetmodel="Case" affectedrows="context" datasource="CountryNameCodes"/>
+          </actions>
+          <events>
+            <event>models.loaded</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+    <model id="RestAPICallActualRunning" query="true" createrowifnonefound="false" datasource="regres_PK" processonclient="true" type="" verb="GET" endpoint="/users?page=2" pathtocontent="data" fieldtargetobjects="data">
+      <fields>
+        <field id="avatar" displaytype="TEXT" label="Avatar"/>
+        <field id="first_name" displaytype="TEXT" label="FirstName"/>
+        <field id="id" displaytype="TEXT" label="Id"/>
+        <field id="last_name" displaytype="TEXT" label="Last Name"/>
+      </fields>
+      <conditions/>
+      <actions>
+        <action>
+          <actions>
+            <action type="publish" sourcemodel="RestAPICall" targetmodel="Case" affectedrows="context" datasource="CountryNameCodes"/>
+          </actions>
+          <events>
+            <event>models.loaded</event>
+          </events>
+        </action>
+      </actions>
+    </model>
+  </models>
+  <components>
+    <skuidvis__chart model="Case" maintitle="{{Model.labelPlural}}" type="line" uniqueid="mapId" rendersnippet="chartMap" height="400px">
+      <dataaxes>
+        <axis id="axis1"/>
+      </dataaxes>
+      <categoryaxes>
+        <axis id="categories" categorytype="field" field="origin"/>
+      </categoryaxes>
+      <serieslist>
+        <series valuefield="countId" splittype="none" splitfield="calendaryearCreatedDate"/>
+      </serieslist>
+      <colors/>
+      <legend layout="horizontal" halign="center" valign="bottom"/>
+      <renderconditions logictype="and"/>
+    </skuidvis__chart>
+    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="RestAPICallActual" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3Xqoo6-1125">
+      <fields>
+        <field id="avatar" hideable="true" uniqueid="fi-3XqsTH-1141"/>
+        <field id="first_name" hideable="true" uniqueid="fi-3XqsTI-1142"/>
+        <field id="id" hideable="true" uniqueid="fi-3XqsTI-1143"/>
+        <field id="last_name" hideable="true" uniqueid="fi-3XqsTJ-1144"/>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+    </skootable>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="chartMap" cachelocation="false">var chartObj = arguments[0],
+$ = skuid.$;
+
+$.extend(true, chartObj, {
+    chart: {
+        		backgroundColor: 'rgba(0,0,0,0)',
+            type: 'line'
+        }
+})</jsitem>
+      <jsitem location="inlinesnippet" name="newSnippet" cachelocation="false">var params = arguments[0],
+	$ = skuid.$;
+var getModel = skuid.model.getModel('RestAPICall')
+// console.log(getModel.dataMap)
+// var obj = getModel.dataMap;
+// var objRec = getModel.recordsMap;
+// console.log(obj[Object.keys(obj)[0]].data)
+// console.log(Object.keys(obj)[0])
+// console.log('ddddddd')
+// console.log(objRec[Object.keys(objRec)[0]]._row.data)
+// console.log(Object.keys(objRec)[0])
+
+var disModel =skuid.model.getModel('RestAPICallActual')
+
+disModel.data = getModel.data[0].data;
+// disModel.dataMap = getModel.data[0].data;
+// disModel.recordsMap = getModel.data[0].data;
+disModel.save()</jsitem>
+    </javascript>
+    <css>
+      <cssitem location="inline" name="newcss" cachelocation="false">#mapId {
+   background:url(https://coolapps-dev-ed--tefirst.na88.visual.force.com/resource/1524261956000/TEFirst__global_map) 0% 0%;
+   background-size:cover;
+   
+}</cssitem>
+    </css>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

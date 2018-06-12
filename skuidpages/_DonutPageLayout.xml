@@ -1,0 +1,168 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="false">
+  <models>
+    <model id="opportuntybyStage" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="aggregate" sobject="Opportunity">
+      <fields>
+        <field id="Amount" name="sumAmount" function="SUM"/>
+      </fields>
+      <conditions/>
+      <actions/>
+      <groupby method="simple">
+        <field id="StageName" name="stageName"/>
+      </groupby>
+    </model>
+    <model id="opportunitybyStatus" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="aggregate" sobject="Opportunity">
+      <fields>
+        <field id="Amount" name="sumAmount" function="SUM"/>
+      </fields>
+      <conditions/>
+      <actions/>
+      <groupby method="simple">
+        <field id="ForecastCategory" name="forecastCategory"/>
+      </groupby>
+    </model>
+  </models>
+  <components>
+    <grid uniqueid="sk-3zCeBd-149">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1">
+          <components>
+            <skuidvis__chart model="opportunitybyStatus" maintitle="" type="donut" uniqueid="sk-3zCgjM-160" export="off" rendersnippet="newSnippet">
+              <dataaxes>
+                <axis id="axis1"/>
+              </dataaxes>
+              <categoryaxes>
+                <axis id="categories" categorytype="field"/>
+              </categoryaxes>
+              <serieslist>
+                <series valuefield="sumAmount" splittype="field" splitfield="forecastCategory"/>
+              </serieslist>
+              <colors/>
+              <legend layout="horizontal" halign="center" valign="bottom"/>
+            </skuidvis__chart>
+          </components>
+        </division>
+        <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+          <components>
+            <skuidvis__chart model="opportuntybyStage" maintitle="" type="donut" uniqueid="sk-3zCmWz-175" export="off" rendersnippet="newSnippet">
+              <dataaxes>
+                <axis id="axis1"/>
+              </dataaxes>
+              <categoryaxes>
+                <axis id="categories" categorytype="field"/>
+              </categoryaxes>
+              <serieslist>
+                <series valuefield="sumAmount" splittype="field" splitfield="stageName"/>
+              </serieslist>
+              <colors/>
+              <legend layout="horizontal" halign="center" valign="bottom"/>
+            </skuidvis__chart>
+          </components>
+        </division>
+        <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+          <components/>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+    </grid>
+  </components>
+  <resources>
+    <labels/>
+    <javascript>
+      <jsitem location="inlinesnippet" name="newSnippet" cachelocation="false">var chartObj = arguments[0],
+$ = skuid.$;
+var grandTotal = 0;
+var innertext = '';
+var newLegendX=0;
+var newLegendY=0;
+
+ function addTitle() {
+
+            if (this.title) {
+                this.title.destroy();
+            }
+
+            var r = this.renderer,
+                x = this.series[0].center[0] + this.plotLeft,
+                y = this.series[0].center[1] + this.plotTop;
+            this.title = r.text('&lt;div style="text-align: center;"&gt;&lt;b&gt;Series 1&lt;/b&gt;&lt;br/&gt; &lt;tspan style="font-size:80%;font-family: MetricHPE-Bold;" align="center"&gt;Total&lt;/tspan&gt;&lt;/div&gt;', 0, 0)
+                .css({
+                color: '#4572A7',
+                fontSize: '16px'
+            }).hide()
+                .add();
+
+            var bbox = this.title.getBBox();
+            this.title.attr({
+                x: x - (bbox.width / 2),
+                y: y
+            }).show();
+        }
+
+$.extend(true, chartObj, {
+    chart: {
+        events: {
+            load: addTitle,
+            redraw: addTitle
+        }
+    },
+    title: {
+        verticalAlign: 'middle',
+    },
+    //Setting Chart Legends
+    legend: {
+        enabled: true,
+        layout: 'vertical',
+        align: 'center',
+        width: 220,
+        symbolRadius: 0,
+        verticalAlign: 'bottom',
+        borderWidth: 0,
+        useHTML: true,
+        labelFormatter: function() {
+            
+            return '&lt;div style="width:250px;top:'+newLegendY+'px"&gt;&lt;span style="float:left"&gt;' + this.name + '(' + this.sk_rows.length + ')' + '&lt;/span&gt;&lt;span style="float:right"&gt;$' + this.y + '&lt;/span&gt;&lt;/div&gt;'
+        }
+    },
+    //Setting Chart PlotOptions
+    plotOptions: {
+        pie: {
+            center: [190, 100],
+            innerSize: '90%',
+            size: 220,
+        },
+        series: {
+            allowPointSelect: false,
+            point: {
+                events: {
+                    legendItemClick: function() {
+                        return false; // Disabling Legend Click for now
+                    },
+                    mouseOver: function() {
+                        console.log('xxxxxxxxsw', innertext);
+                        innertext.attr({
+                            text: this.name + '&lt;br/&gt;' + this.y
+                        })
+                    },
+                    mouseOut: function() {
+                        innertext.attr({
+                            text: 'Total &lt;br/&gt;' + grandTotal
+                        })
+                    }
+                }
+            }
+        }
+    }
+});</jsitem>
+    </javascript>
+    <css>
+      <cssitem location="inline" name="newcss" cachelocation="false">.sk-chart-innertext{
+    display:none;
+}</cssitem>
+    </css>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>

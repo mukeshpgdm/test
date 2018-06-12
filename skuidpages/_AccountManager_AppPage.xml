@@ -1,0 +1,447 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="false" useviewportmeta="true" showheader="true" theme="Material Blue">
+  <models>
+    <model id="PrimaryOpptys" limit="50" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="Opportunity" orderby="">
+      <fields>
+        <field id="AccountId"/>
+        <field id="Account.Name"/>
+        <field id="Amount"/>
+        <field id="CloseDate"/>
+        <field id="FiscalQuarter"/>
+        <field id="FiscalYear"/>
+        <field id="LastModifiedById"/>
+        <field id="LastModifiedBy.Name"/>
+        <field id="LastModifiedDate"/>
+        <field id="Name"/>
+        <field id="NextStep"/>
+        <field id="Id"/>
+        <field id="OwnerId"/>
+        <field id="Owner.Name"/>
+        <field id="StageName"/>
+        <field id="Account.Industry"/>
+        <field id="IsClosed"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" field="Account.Industry" operator="=" inactive="true" enclosevalueinquotes="true" name="__autofilter__Account.Industry" state="filterableoff" value=""/>
+        <condition type="multiple" field="StageName" operator="in" inactive="true" enclosevalueinquotes="true" name="__autofilter__StageName" state="filterableoff" value=""/>
+        <condition type="fieldvalue" value="false" enclosevalueinquotes="false" field="IsClosed" state="filterableon" inactive="false" name="IsClosed"/>
+        <condition type="fieldvalue" value="" field="Account.Industry" operator="=" mergefield="Account.Industry" novaluebehavior="deactivate" enclosevalueinquotes="true" state="filterableoff" inactive="true" name="Account.Industry"/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="OpportunityDetails" limit="1" query="false" createrowifnonefound="false" datasource="salesforce" type="" sobject="Opportunity" orderby="">
+      <fields>
+        <field id="AccountId"/>
+        <field id="Account.Name"/>
+        <field id="Amount"/>
+        <field id="CloseDate"/>
+        <field id="FiscalQuarter"/>
+        <field id="FiscalYear" overridemetadata="true" ogdisplaytype="INTEGER" displaytype="TEXT" precision="" scale=""/>
+        <field id="LastModifiedById"/>
+        <field id="LastModifiedBy.Name"/>
+        <field id="LastModifiedDate"/>
+        <field id="Name"/>
+        <field id="NextStep"/>
+        <field id="Id"/>
+        <field id="OwnerId"/>
+        <field id="Owner.Name"/>
+        <field id="StageName"/>
+        <field id="Account.Industry"/>
+        <field id="IsClosed"/>
+        <field id="Description"/>
+        <field id="Account.Description"/>
+        <field id="Account.Phone"/>
+        <field id="Account.Type"/>
+        <field id="Account.AnnualRevenue"/>
+        <field id="Account.BillingCity"/>
+        <field id="Account.BillingCountry"/>
+        <field id="Account.BillingState"/>
+        <field id="Account.BillingStreet"/>
+        <field id="Account.BillingPostalCode"/>
+        <field id="Account.LastModifiedById"/>
+        <field id="Account.LastModifiedBy.Name"/>
+        <field id="Account.LastModifiedDate"/>
+        <field id="Account.OwnerId"/>
+        <field id="Account.Owner.Name"/>
+        <field id="Account.Website"/>
+      </fields>
+      <conditions>
+        <condition type="fieldvalue" value="" enclosevalueinquotes="true" field="Id" state="filterableoff" inactive="true" name="DetailsOpptyId" operator="="/>
+      </conditions>
+      <actions/>
+    </model>
+    <model id="recentItems" limit="20" query="true" createrowifnonefound="false" datasource="salesforce" type="" sobject="RecentlyViewed" doclone="">
+      <fields>
+        <field id="Alias"/>
+        <field id="Email"/>
+        <field id="FirstName"/>
+        <field id="InformalName"/>
+        <field id="Language"/>
+        <field id="LastName"/>
+        <field id="LastReferencedDate"/>
+        <field id="LastViewedDate"/>
+        <field id="MiddleName"/>
+        <field id="Name"/>
+        <field id="Phone"/>
+        <field id="ProfileId"/>
+        <field id="Profile.Name"/>
+        <field id="Id"/>
+        <field id="RecordTypeId"/>
+        <field id="RecordType.Name"/>
+        <field id="UserRoleId"/>
+        <field id="UserRole.Name"/>
+        <field id="Title"/>
+        <field id="Type"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <tabset rememberlastusertab="true" defertabrendering="true" uniqueid="sk-3d2O8-477" renderas="">
+      <tabs>
+        <tab name="Account Detail">
+          <components>
+            <grid uniqueid="sk-3ePdf-784">
+              <divisions>
+                <division behavior="flex" minwidth="100px" ratio="1">
+                  <components>
+                    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="recentItems" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3dCfW-505">
+                      <fields>
+                        <field id="Name" hideable="true" uniqueid="fi-3dphS-591" valuehalign="" type=""/>
+                        <field id="Type" hideable="true" uniqueid="fi-3dphS-595" valuehalign="" type=""/>
+                      </fields>
+                      <rowactions/>
+                      <massactions usefirstitemasdefault="true"/>
+                      <views>
+                        <view type="standard"/>
+                      </views>
+                    </skootable>
+                  </components>
+                </division>
+                <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+                  <components/>
+                </division>
+              </divisions>
+              <styles>
+                <styleitem type="background" bgtype="none"/>
+              </styles>
+            </grid>
+          </components>
+        </tab>
+        <tab name="Installed Base" loadlazypanels="true">
+          <components/>
+        </tab>
+      </tabs>
+    </tabset>
+    <pagetitle uniqueid="sk-39Vg6-173" model="PrimaryOpptys">
+      <maintitle>Opportunities</maintitle>
+      <actions/>
+      <renderconditions logictype="and"/>
+    </pagetitle>
+    <filterset model="PrimaryOpptys" searchmethod="server" searchbox="true" uniqueid="sk-2IgOF-475" position="right" emptysearchbehavior="query" instantfilters="true">
+      <filters>
+        <filter type="select" filteroffoptionlabel="All Industry" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="Account.Industry"/>
+        <filter type="multiselect" filteroffoptionlabel="All Stage" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="auto" labelmode="auto" conditionfield="StageName" conditionoperator="in"/>
+        <filter type="toggle" filteroffoptionlabel="New Filter" createfilteroffoption="true" affectcookies="true" autocompthreshold="25" conditionsource="manual" labelmode="auto" label="Show Closed Oppty">
+          <effects>
+            <effect action="deactivate" value="" condition="IsClosed"/>
+          </effects>
+        </filter>
+      </filters>
+      <searchfields/>
+      <renderconditions logictype="and"/>
+    </filterset>
+    <grid uniqueid="sk-3CUUG-377">
+      <divisions>
+        <division behavior="flex" minwidth="100px" ratio="1">
+          <components>
+            <skuidvis__chart model="PrimaryOpptys" maintitle="{{Model.labelPlural}} by Industry" type="column" uniqueid="sk-3CkhN-386">
+              <dataaxes>
+                <axis id="axis1" title="Count"/>
+              </dataaxes>
+              <categoryaxes>
+                <axis id="categories" categorytype="field" field="Account.Industry"/>
+              </categoryaxes>
+              <serieslist>
+                <series valuefield="Account.Industry" splittype="none" modelId="PrimaryOpptys" categoryField="Account.Industry" aggfunction="count">
+                  <actions>
+                    <action type="showPopup">
+                      <conditions>
+                        <condition type="contextrows" field="Id" mergefield="Id" operator="in" autocreated="true"/>
+                      </conditions>
+                      <popup title="Industry Drilldown" width="90%">
+                        <components>
+                          <pagetitle uniqueid="sk-3E_KX-447" model="PrimaryOpptys">
+                            <maintitle>{{Account.Industry}}</maintitle>
+                            <subtitle>
+                              <template>{{Model.label}}</template>
+                            </subtitle>
+                            <actions/>
+                            <conditions>
+                              <condition type="contextrow" field="Id" mergefield="Id" operator="="/>
+                            </conditions>
+                            <renderconditions logictype="and"/>
+                          </pagetitle>
+                          <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="false" pagesize="10" alwaysresetpagination="false" createrecords="true" model="PrimaryOpptys" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-3Ghaq-188">
+                            <fields>
+                              <field id="AccountId" hideable="true" uniqueid="fi-3HsCv-219"/>
+                              <field id="Name" hideable="true" uniqueid="fi-3HsCv-220"/>
+                              <field id="StageName" hideable="true" uniqueid="fi-3HsCw-221"/>
+                              <field id="Amount" hideable="true" uniqueid="fi-3HsCw-222"/>
+                              <field id="Account.Industry" hideable="true" uniqueid="fi-3IFDn-236"/>
+                            </fields>
+                            <rowactions>
+                              <action type="edit"/>
+                              <action type="delete"/>
+                            </rowactions>
+                            <massactions usefirstitemasdefault="true">
+                              <action type="massupdate"/>
+                              <action type="massdelete"/>
+                            </massactions>
+                            <views>
+                              <view type="standard"/>
+                            </views>
+                            <conditions>
+                              <condition type="contextrows" field="Id" mergefield="Id" operator="in"/>
+                            </conditions>
+                          </skootable>
+                        </components>
+                      </popup>
+                    </action>
+                  </actions>
+                </series>
+              </serieslist>
+              <colors/>
+              <legend layout="horizontal" halign="center" valign="bottom"/>
+            </skuidvis__chart>
+          </components>
+        </division>
+        <division behavior="flex" verticalalign="top" minwidth="100px" ratio="1">
+          <components>
+            <skuidvis__chart model="PrimaryOpptys" maintitle="{{Model.labelPlural}} by Stage" type="bar" uniqueid="sk-3IMoU-248" stacking="true">
+              <dataaxes>
+                <axis id="axis1" title="count"/>
+              </dataaxes>
+              <categoryaxes>
+                <axis id="categories" categorytype="field" field="StageName"/>
+              </categoryaxes>
+              <serieslist>
+                <series valuefield="StageName" splittype="field" modelId="PrimaryOpptys" categoryField="StageName" aggfunction="count" splitfield="Account.Industry">
+                  <actions>
+                    <action type="setCondition" model="PrimaryOpptys" value="{{Account.Industry}}" condition="Account.Industry">
+                      <conditions>
+                        <condition type="contextrows" field="Id" mergefield="Id" operator="in" autocreated="true"/>
+                      </conditions>
+                    </action>
+                    <action type="requeryModel" model="PrimaryOpptys" behavior="standard">
+                      <conditions>
+                        <condition type="contextrows" field="Id" mergefield="Id" operator="in" autocreated="true"/>
+                      </conditions>
+                    </action>
+                  </actions>
+                </series>
+              </serieslist>
+              <colors/>
+              <legend layout="horizontal" halign="center" valign="bottom"/>
+            </skuidvis__chart>
+          </components>
+        </division>
+      </divisions>
+      <styles>
+        <styleitem type="background" bgtype="none"/>
+      </styles>
+    </grid>
+    <skootable showconditions="true" showsavecancel="true" showerrorsinline="true" searchmethod="server" searchbox="true" showexportbuttons="true" pagesize="10" alwaysresetpagination="false" createrecords="true" model="PrimaryOpptys" buttonposition="" mode="read" allowcolumnreordering="true" responsive="true" uniqueid="sk-22_9B-142" allowscrollbars="true">
+      <fields>
+        <field id="Name" hideable="false" uniqueid="fi-2F0hz-268" valuehalign="" type="" showbydefault="true"/>
+        <field id="AccountId" hideable="true" uniqueid="fi-23ODN-158" valuehalign="" type="" allowordering="true">
+          <label>Account Name</label>
+        </field>
+        <field id="StageName" hideable="true" uniqueid="fi-2F0h_-269" valuehalign="" type="" allowordering="true"/>
+        <field id="Amount" hideable="true" uniqueid="fi-23ODN-159" decimalplaces="" valuehalign="" type="">
+          <summaries>
+            <summary>sum</summary>
+          </summaries>
+        </field>
+        <field id="CloseDate" hideable="true" uniqueid="fi-23ODN-160" valuehalign="" type=""/>
+        <field id="Account.Industry" hideable="true" uniqueid="fi-2FFl9-283" valuehalign="" type="">
+          <label>Account Industry</label>
+        </field>
+      </fields>
+      <rowactions>
+        <action type="edit"/>
+        <action type="delete"/>
+        <action type="multi" label="Run multiple actions" icon="sk-webicon-font-awesome:reorder">
+          <actions>
+            <action type="blockUI" message="Loading Data"/>
+            <action type="setCondition" model="OpportunityDetails" condition="DetailsOpptyId" value="{{Id}}"/>
+            <action type="requeryModel" model="OpportunityDetails" behavior="standard">
+              <onerroractions>
+                <action type="blockUI" message="Query Error Opportunity Detaik" timeout="3000"/>
+              </onerroractions>
+            </action>
+            <action type="openSlidingPanel">
+              <panel title="Sliding Panel Contents" uniqueid="sk-2WgCU-743" size="50%" origin="right" closeonpageclick="true" behavior="overlay">
+                <components>
+                  <pagetitle uniqueid="sk-39sED-234" model="PrimaryOpptys">
+                    <subtitle>
+                      <template>{{Model.label}}</template>
+                    </subtitle>
+                    <actions/>
+                    <maintitle>{{{Name}}}</maintitle>
+                  </pagetitle>
+                  <basicfieldeditor showheader="true" showsavecancel="true" showerrorsinline="true" model="OpportunityDetails" buttonposition="" uniqueid="sk-2XGlW-772" mode="read" layout="">
+                    <columns layoutmode="responsive" columngutter="4px" rowgutter="4px">
+                      <column ratio="1" minwidth="300px" behavior="flex" verticalalign="top">
+                        <sections>
+                          <section title="Opportunity Detail {{Name}}" collapsible="no">
+                            <fields>
+                              <field uniqueid="sk-2YDYA-838" id="Name" valuehalign="" type=""/>
+                              <field uniqueid="sk-2YDYB-839" id="StageName"/>
+                              <field uniqueid="sk-2YDYB-840" id="Amount"/>
+                              <field uniqueid="sk-2YDYB-841" id="NextStep"/>
+                              <field uniqueid="sk-2YDYB-842" id="CloseDate"/>
+                              <columns uniqueid="sk-2YYX6-862" layoutmode="fixed">
+                                <column width="100%">
+                                  <sections>
+                                    <section title="Additional Info" collapsible="no" showheader="true">
+                                      <fields>
+                                        <field uniqueid="sk-2YyRH-877" id="FiscalQuarter" valuehalign="" type=""/>
+                                        <field uniqueid="sk-2YyRH-876" id="FiscalYear"/>
+                                      </fields>
+                                    </section>
+                                  </sections>
+                                </column>
+                              </columns>
+                            </fields>
+                          </section>
+                          <section title="System Info" collapsible="no">
+                            <fields>
+                              <field uniqueid="sk-2ZW5A-894" id="OwnerId"/>
+                              <field uniqueid="sk-2ZW5B-895" id="LastModifiedById"/>
+                              <field uniqueid="sk-2ZW5B-896" id="LastModifiedDate"/>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                      <column ratio="1" minwidth="300px" behavior="flex">
+                        <sections>
+                          <section title="Account Detail" collapsible="no">
+                            <fields>
+                              <field uniqueid="sk-2Zvth-909" id="Account.BillingPostalCode"/>
+                              <field uniqueid="sk-2Zvth-910" id="Account.AnnualRevenue"/>
+                              <field uniqueid="sk-2Zvti-911" id="Account.Phone"/>
+                              <field uniqueid="sk-2Zvti-912" id="Account.Type"/>
+                              <field uniqueid="sk-2Zvti-913" id="Account.Website"/>
+                              <columns uniqueid="sk-2Zz78-924">
+                                <column width="100%">
+                                  <sections>
+                                    <section title="Address" collapsible="no" showheader="true">
+                                      <fields>
+                                        <field uniqueid="sk-2a59H-931" type="COMBO" valuehalign="" editmodebehavior="autopopup">
+                                          <label>Billing Address</label>
+                                          <template>{{Account.BillingStreet}}
+{{Account.BillingCity}}
+{{Account.BillingState}},{{Account.BillingPostalCode}}
+{{Account.BillingCountry}}</template>
+                                        </field>
+                                      </fields>
+                                    </section>
+                                  </sections>
+                                </column>
+                              </columns>
+                              <columns uniqueid="sk-2arK0-990">
+                                <column width="100%">
+                                  <sections>
+                                    <section title="Account System Info" collapsible="no" showheader="true">
+                                      <fields>
+                                        <field uniqueid="sk-2b1A--999" id="OwnerId"/>
+                                        <field uniqueid="sk-2b1B0-1000" id="LastModifiedById"/>
+                                        <field uniqueid="sk-2b1B0-1001" id="LastModifiedDate"/>
+                                      </fields>
+                                    </section>
+                                  </sections>
+                                </column>
+                              </columns>
+                            </fields>
+                          </section>
+                        </sections>
+                      </column>
+                    </columns>
+                  </basicfieldeditor>
+                </components>
+                <interactions/>
+              </panel>
+            </action>
+            <action type="unblockUI"/>
+          </actions>
+        </action>
+      </rowactions>
+      <massactions usefirstitemasdefault="true">
+        <action type="massupdate"/>
+        <action type="massdelete"/>
+      </massactions>
+      <views>
+        <view type="standard"/>
+      </views>
+      <exportproperties usetablecolumns="true"/>
+      <searchfields/>
+      <filters/>
+    </skootable>
+  </components>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css>
+      <cssitem location="inline" name="newcss" cachelocation="false">.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* The container &lt;div&gt; - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}</cssitem>
+    </css>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+  <interactions/>
+</skuidpage>

@@ -1,0 +1,65 @@
+<skuidpage unsavedchangeswarning="yes" personalizationmode="server" showsidebar="true" useviewportmeta="true" showheader="true">
+  <models>
+    <model id="Summary" query="true" createrowifnonefound="false" datasource="local" processonclient="true" type="" verb="GET" endpoint="/installedbase-accounts-amps-summary">
+      <fields>
+        <field id="currentView"/>
+        <field id="firstExpirtationDate"/>
+        <field id="relatedToContract"/>
+        <field id="relatedToOppty"/>
+        <field id="totalValue"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+    <model id="Data" query="true" createrowifnonefound="false" datasource="local" processonclient="true" type="" verb="GET" endpoint="/installedbase-accounts-amps-summary" pathtocontent="data" fieldtargetobjects="data">
+      <fields>
+        <field id="accountId"/>
+        <field id="accountName"/>
+        <field id="key"/>
+        <field id="value"/>
+      </fields>
+      <conditions/>
+      <actions/>
+    </model>
+  </models>
+  <components>
+    <basicfieldeditor showheader="true" showsavecancel="true" showerrorsinline="true" model="Summary" buttonposition="" uniqueid="sk-3Umtwk-174" mode="read">
+      <columns>
+        <column width="100%">
+          <sections>
+            <section title="Section A" collapsible="no">
+              <fields>
+                <field uniqueid="sk-3Umxvk-193" id="currentView"/>
+                <field uniqueid="sk-3Umxvl-194" id="firstExpirtationDate"/>
+                <field uniqueid="sk-3Umxvl-195" id="relatedToContract"/>
+                <field uniqueid="sk-3Umxvm-196" id="relatedToOppty" valuehalign="" type=""/>
+                <field uniqueid="sk-3Umxvm-197" id="totalValue"/>
+              </fields>
+            </section>
+          </sections>
+        </column>
+      </columns>
+    </basicfieldeditor>
+    <skuidvis__chart model="Data" maintitle="{{Model.labelPlural}}" type="column" uniqueid="sk-3Un0i3-209" stacking="true">
+      <dataaxes>
+        <axis id="axis1"/>
+      </dataaxes>
+      <categoryaxes>
+        <axis id="categories" categorytype="field" field="key"/>
+      </categoryaxes>
+      <serieslist>
+        <series valuefield="value" splittype="field" splitfield="accountName"/>
+      </serieslist>
+      <colors/>
+      <legend layout="horizontal" halign="center" valign="bottom"/>
+    </skuidvis__chart>
+  </components>
+  <resources>
+    <labels/>
+    <javascript/>
+    <css/>
+  </resources>
+  <styles>
+    <styleitem type="background" bgtype="none"/>
+  </styles>
+</skuidpage>
